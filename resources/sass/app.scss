@@ -1,10 +1,43 @@
-// The following two lines import the default Sencha Touch theme. If you are building
-// a new theme, remove them and the add your own CSS on top of the base CSS (which
-// is already included in your app.json file).
+/* Overwrite for Theme Variables */
+$base-color: #238C23 !default;
+$font-family: 'Daniel' !default;
+$page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,150,1) 100%) !default;
+
+/**
+ * The following two lines import the default Sencha Touch theme. 
+ * If you are building a new theme, remove them and the add your own CSS on top of the base CSS
+ * (which is already included in your app.json file).
+ */
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-// Custom code goes here..
+@font-face {
+	font-family: 'PWSmallIcons';
+	src: url('../fonts/PWSmallIcons.ttf');
+}
 
-// Examples of using the icon mixin:
-// @include icon('user');
+@font-face {
+        font-family: 'Daniel';
+        src: url('../fonts/daniel.ttf');
+}
+
+@include icon('aos-calendar','(','PWSmallIcons');
+@include icon('aos-home','2','PWSmallIcons');
+
+/* Overwrite for Icon Size */
+.x-tab .x-button-icon {
+    font-size: 1.3em;
+}
+
+/* Overwrite for Tab Label */
+.x-tabbar.x-docked-bottom .x-tab .x-button-label{
+    font-size: 0.8em;
+	padding: 0.4em;
+}
+
+/* Overwrite for Bottom Tab */
+.x-tabbar.x-docked-bottom {
+    height: 4.3em;
+}
+
+
