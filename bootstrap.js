@@ -20,7 +20,11 @@ Ext.Loader.addClassPathMappings({
   "Ext.draw.engine.SvgContext.Gradient": "touch/src/draw/engine/SvgContext.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
+  "AOS.controller.Main": [],
+  "AOS.view.Forgot": [],
+  "AOS.view.Login": [],
   "AOS.view.Main": [],
+  "AOS.view.Signup": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -746,8 +750,18 @@ Ext.ClassManager.addNameAlternateMappings({
   ]
 });
 Ext.ClassManager.addNameAliasMappings({
+  "AOS.controller.Main": [],
+  "AOS.view.Forgot": [
+    "widget.general"
+  ],
+  "AOS.view.Login": [
+    "widget.general"
+  ],
   "AOS.view.Main": [
     "widget.main"
+  ],
+  "AOS.view.Signup": [
+    "widget.general"
   ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
