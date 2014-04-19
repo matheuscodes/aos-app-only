@@ -1,13 +1,14 @@
-Ext.define('AOS.controller.Main', {
+Ext.define('AOS.controller.Principal', {
 		extend: 'Ext.app.Controller',
 		config: {
 			viewCache: [],
 			refs: {
-				general: 'general'
+				principal: 'principal'
 			},
 			control: {
-				general: {
-					switching: 'showView'
+				principal: {
+					switching: 'showView',
+					error: 'printError'
 				}
 			}
 		},
@@ -50,5 +51,13 @@ Ext.define('AOS.controller.Main', {
 
 			Ext.Viewport.add(view);
 			Ext.Viewport.animateActiveItem(view, animation);			
+		},
+
+		printError: function(message,where){
+			var error = where;
+			error.hide();
+			error.setHtml(message);
+			error.show();
 		}
+
 	});

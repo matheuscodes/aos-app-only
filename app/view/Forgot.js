@@ -1,7 +1,9 @@
 Ext.define('AOS.view.Forgot', {
 		extend: 'Ext.Panel',
-		alias: 'widget.general',
-		requires: ['Ext.form.FieldSet', 'Ext.field.Email', 'Ext.Label', 'Ext.Img'],
+		alias: 'widget.principal',
+		requires: [	'Ext.form.FieldSet', 
+					'Ext.field.Email', 
+					'Ext.Label'],
 		config: {
 			title: 'Forgot',
 			items: [
@@ -14,7 +16,12 @@ Ext.define('AOS.view.Forgot', {
 							xtype: 'button',
 							text: 'Back',
 							itemId: 'backButton',
-							align: 'left'
+							align: 'left',
+							handler: function(){
+								//TODO optmize
+								var me = this.parent.parent.parent;
+								me.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
+							}
 						}
 					]
 				},
@@ -43,21 +50,11 @@ Ext.define('AOS.view.Forgot', {
 				},
 				{
 					xtype: 'button',
-					itemId: 'resetPassword',
 					ui: 'action',
 					margin: '1%',
 					text: 'Reset Password'
-				}
-			],
-			listeners: [
-				{
-					delegate: '#backButton',
-					event: 'tap',
-					fn: 'onBackButtonTap'
+					//TODO api call to reset password
 				}
 			]
-		},
-		onBackButtonTap: function(){
-			this.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
 		}
 	});

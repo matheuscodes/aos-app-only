@@ -1,7 +1,7 @@
 Ext.define('AOS.view.Signup', {
 		extend: 'Ext.Panel',
-		alias: 'widget.general',
-		requires: ['Ext.form.FieldSet', 'Ext.field.Email','Ext.field.Password', 'Ext.Label', 'Ext.Img'],
+		alias: 'widget.principal',
+		requires: ['Ext.form.FieldSet', 'Ext.field.Email','Ext.field.Password', 'Ext.Label', 'Ext.Img', 'Ext.Ajax', 'Ext.JSON'],
 		config: {
 			title: 'Signup',
 			scrollable: 'vertical',
@@ -15,7 +15,11 @@ Ext.define('AOS.view.Signup', {
 							xtype: 'button',
 							text: 'Back',
 							itemId: 'backButton',
-							align: 'left'
+							align: 'left',
+							handler: function(){
+								var me = this.parent.parent.parent;
+								me.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
+							}
 						}
 					]
 				},
@@ -97,71 +101,62 @@ Ext.define('AOS.view.Signup', {
 					itemId: 'submitButton',
 					ui: 'action',
 					margin: '1%',
-					text: 'Submit'
-				}
-			],
-			listeners: [
-				{
-					delegate: '#submitButton',
-					event: 'tap',
-					fn: 'onSubmitButtonTap'
-				},
-				{
-					delegate: '#backButton',
-					event: 'tap',
-					fn: 'onBackButtonTap'
-				}
-			]
-		},
-		onSubmitButtonTap: function(){
-
-			var user_name = this.down('#newUserName').getValue();
-			var first_name = this.down('#newFirstName').getValue();
-			var last_name = this.down('#newLastName').getValue();
-			var password = this.down('#newPassword').getValue();
-			var password2 = this.down('#newConfirmPassword').getValue();
-			var email = this.down('#newEmail').getValue();
-			var email2 = this.down('#newConfirmEmail').getValue();
+					text: 'Submit',
+					handler: function(){
+						var me = this.parent;
+						var user_name = me.down('#newUserName').getValue();
+						var first_name = me.down('#newFirstName').getValue();
+						var last_name = me.down('#newLastName').getValue();
+						var password = me.down('#newPassword').getValue();
+						var password2 = me.down('#newConfirmPassword').getValue();
+						var email = me.down('#newEmail').getValue();
+						var email2 = me.down('#newConfirmEmail').getValue();
 
 			
-			if(user_name.length > 13) this.printError("Username too long, over 13 letters");
-			else if(first_name.length > 35) this.printError("First name too long, over 35 letters");
-			else if(last_name.length > 35) this.printError("Last name too long, over 35 letters");
-			else if(email.length > 45) this.printError("Email too long, over 45 letters");
-			else if(password != password2) this.printError("Passwords do not match");
-			else if(email != email2) this.printError("Emails do not match");
-			else { 
-				//TODO make a hash.
-				var hashed_password = password;
-				Ext.Ajax.request({
-					url: 'signup',
-					method: 'post',
-					params: {
-						user_name: user_name,
-						first_name: first_name,
-						last_name: last_name,
-						hashed_password: hashed_password,
-						email: email
-					},
-					success: function (response) {
-					},
-					failure: function (response) {
-					
+						if(user_name.length > 13) 
+							me.fireEvent('error',"Username too long, over 13 letters",me.down('#signupErrorMessage'));
+						else if(first_name.length > 35) 
+							me.fireEvent('error',"First name too long, over 35 letters",me.down('#signupErrorMessage'));
+						else if(last_name.length > 35) 
+							me.fireEvent('error',"Last name too long, over 35 letters",me.down('#signupErrorMessage'));
+						else if(email.length > 45)
+							me.fireEvent('error',"Email too long, over 45 letters",me.down('#signupErrorMessage'));
+						else if(password != password2)
+							me.fireEvent('error',"Passwords do not match",me.down('#signupErrorMessage'));
+						else if(email != email2) 
+							me.fireEvent('error',"Emails do not match",me.down('#signupErrorMessage'));
+						else { 
+							//TODO make a hash.
+							var hashed_password = password;
+							Ext.Ajax.request({
+								url: 'signup',
+								method: 'post',
+								params: {
+									user_name: user_name,
+									first_name: first_name,
+									last_name: last_name,
+									hashed_password: hashed_password,
+									email: email
+								},
+								success: function (response) {
+									if(response.status == 200){
+										var suggestions = Ext.JSON.decode(response.responseText);
+										me.fireEvent('error',"Username "+user_name+" is already taken, you can try<br/>"+
+														suggestions[0]+"<br/>"+suggestions[1]+"<br/>"+suggestions[2],
+														me.down('#signupErrorMessage'));
+									}
+									else{
+										me.fireEvent('switching','AOS.view.Statistics', { type: 'pop' });
+									}
+								},
+								failure: function (response) {
+									me.fireEvent('error',"Error "+response.status+": "+response.statusText,
+													me.down('#signupErrorMessage'));
+								}
+							});
+						}
 					}
-				});
-			}
-			//TODO route to main/dashboard
-			//this.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
-		},
-
-		printError: function(message){
-			var error = this.down('#signupErrorMessage');
-			error.hide();
-			error.setHtml(message);
-			error.show();
-		},
-
-		onBackButtonTap: function(){
-			this.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
+				}
+			]
 		}
 	});
