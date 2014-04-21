@@ -70,6 +70,7 @@ Ext.define('AOS.view.Login', {
 									hashed_password: hashed_password
 								},
 								success: function (response) {
+									me.down('#loginErrorMessage').setHtml('');
 									me.fireEvent('switching','AOS.view.Statistics',{ type: 'pop' });
 								},
 								failure: function (response) {

@@ -8,7 +8,8 @@ Ext.define('AOS.controller.Principal', {
 			control: {
 				principal: {
 					switching: 'showView',
-					error: 'printError'
+					error: 'printError',
+					logout: 'logOut'
 				}
 			}
 		},
@@ -58,6 +59,20 @@ Ext.define('AOS.controller.Principal', {
 			error.hide();
 			error.setHtml(message);
 			error.show();
+		},
+
+		logOut: function(){
+			var me = this;
+			Ext.Ajax.request({
+				url: 'logout',
+				method: 'post',
+				success: function (response) {
+					me.showView('AOS.view.Login',{ type: 'pop' });
+				},
+				failure: function (response) {
+					me.showView('AOS.view.Login',{ type: 'pop' });
+				}
+			});
 		}
 
 	});

@@ -14,7 +14,7 @@ Ext.application({
 	name: 'AOS',
 
 	requires: [
-		'Ext.MessageBox','Ext.Ajax'
+		'Ext.MessageBox','Ext.Ajax','Ext.Menu','AOS.Helper'
 	],
 
 	views: [
@@ -47,6 +47,9 @@ Ext.application({
 		// Destroy the #appLoadingIndicator element
 		Ext.fly('appLoadingIndicator').destroy();
 
+		// Initialize the main menu
+		Ext.Viewport.setMenu(this.buildMainMenu(),{side:'top',cover:true});
+								
 		// Initialize the main view
 		Ext.Ajax.request({
 			url: 'login',
@@ -76,5 +79,31 @@ Ext.application({
 				}
 			}
 		);
+	},
+
+	buildMainMenu: function(){
+		var menu = Ext.create('Ext.Menu');
+		var helper = Ext.create('AOS.Helper');
+		menu.add([
+			{
+				xtype: 'button',
+				text: 'Statistics',
+				iconCls: 'aos-icon-statistics',
+				handler: function(){
+					helper.fireEvent('switching','AOS.view.Statistics',{ type: 'slide', direction: 'up' });
+					Ext.Viewport.toggleMenu('top');
+				}
+			},
+			{
+				xtype: 'button',
+				text: 'Log Out',
+				iconCls: 'aos-icon-logout',
+				handler: function(){
+					helper.fireEvent('logout');
+					Ext.Viewport.toggleMenu('top');
+				}
+			}
+		]);
+		return menu;
 	}
 });

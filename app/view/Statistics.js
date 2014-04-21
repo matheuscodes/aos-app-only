@@ -4,15 +4,15 @@ Ext.define('AOS.view.Statistics', {
 	requires: [
 		'Ext.TitleBar',
 		'Ext.Video',
-		'AOS.view.button.Logout'
-	],
+		'AOS.view.button.Logout',
+		'AOS.view.button.MainMenu'],
 	config: {
 		tabBarPosition: 'bottom',
 
 		items: [
 			{
 				title: 'Welcome',
-				iconCls: 'aos-home',
+				iconCls: 'aos-icon-home',
 
 				styleHtmlContent: true,
 				scrollable: true,
@@ -21,10 +21,18 @@ Ext.define('AOS.view.Statistics', {
 					docked: 'top',
 					xtype: 'titlebar',
 					title: 'Welcome to Sencha Touch 2',
-					items: [{
-							xtype: 'aos-logout',
+					items: [
+						{
+							xtype: 'aos-button-logout',
+							iconCls: 'aos-icon-logout',
 							align: 'right'
-						}]
+						},
+						{
+							xtype: 'aos-button-mainmenu',
+							iconCls: 'aos-icon-mainmenu',
+							align: 'left'
+						}
+					]
 				},
 
 				html: [
@@ -35,7 +43,7 @@ Ext.define('AOS.view.Statistics', {
 			},
 			{
 				title: 'Get Started',
-				iconCls: 'aos-calendar',
+				iconCls: 'aos-icon-calendar',
 
 				items: [
 					{

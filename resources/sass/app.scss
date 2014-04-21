@@ -21,8 +21,11 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
         src: url('../fonts/daniel.ttf');
 }
 
-@include icon('aos-calendar','(','PWSmallIcons');
-@include icon('aos-home','2','PWSmallIcons');
+@include icon("aos-icon-calendar","(","PWSmallIcons");
+@include icon("aos-icon-home","2","PWSmallIcons");
+@include icon("aos-icon-statistics","\2018","PWSmallIcons");
+@include icon("aos-icon-logout","\60","PWSmallIcons");
+@include icon("aos-icon-mainmenu","\ce","PWSmallIcons");
 
 /* Overwrite for Icon Size */
 .x-tab .x-button-icon {
