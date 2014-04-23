@@ -18,11 +18,15 @@ Ext.application({
 	],
 
 	views: [
-		'Login','Forgot','Signup','Statistics'
+		'Login','Forgot','Signup','Statistics','Goals'
 	],
 
 	controllers: [
 		'Principal'
+	],
+
+	stores: [
+		'Goals'
 	],
 
 	icon: {
@@ -49,7 +53,7 @@ Ext.application({
 
 		// Initialize the main menu
 		Ext.Viewport.setMenu(this.buildMainMenu(),{side:'top',cover:true});
-								
+		//AOS.util.Proxy.process('feed.js');			
 		// Initialize the main view
 		Ext.Ajax.request({
 			url: 'login',
@@ -63,7 +67,7 @@ Ext.application({
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.view.Login'));
+				Ext.Viewport.add(Ext.create('AOS.view.Goals'));
 			}
 		});
 		
@@ -91,6 +95,15 @@ Ext.application({
 				iconCls: 'aos-icon-statistics',
 				handler: function(){
 					helper.fireEvent('switching','AOS.view.Statistics',{ type: 'slide', direction: 'up' });
+					Ext.Viewport.toggleMenu('top');
+				}
+			},
+			{
+				xtype: 'button',
+				text: 'Goals',
+				iconCls: 'aos-icon-goals',
+				handler: function(){
+					helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},

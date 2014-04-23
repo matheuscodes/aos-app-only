@@ -37,14 +37,12 @@ Ext.define('AOS.view.Login', {
 							xtype: 'textfield',
 							placeHolder: 'Username',
 							itemId: 'userNameTextField',
-							name: 'userNameTextField',
 							required: true
 						},
 						{
 							xtype: 'passwordfield',
 							placeHolder: 'Password',
 							itemId: 'passwordTextField',
-							name: 'passwordTextField',
 							required: true
 						}
 					]

@@ -26,6 +26,12 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 @include icon("aos-icon-statistics","\2018","PWSmallIcons");
 @include icon("aos-icon-logout","\60","PWSmallIcons");
 @include icon("aos-icon-mainmenu","\ce","PWSmallIcons");
+@include icon("aos-icon-goals","\53","PWSmallIcons");
+@include icon("aos-icon-remove","\201d","PWSmallIcons");
+@include icon("aos-icon-details","\46","PWSmallIcons");
+@include icon("aos-icon-tasks","\4f","PWSmallIcons");
+@include icon("aos-icon-edit","\59","PWSmallIcons");
+@include icon("aos-icon-new","\68","PWSmallIcons");
 
 /* Overwrite for Icon Size */
 .x-tab .x-button-icon {
@@ -43,4 +49,14 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
     height: 4.3em;
 }
 
+
+.aos-small-status {
+	font-size: 80%;
+	text-align: center;
+	padding: 0 1em 0 0;
+}
+
+.aos-title {
+	font-size: 120%;
+}
 
