@@ -50,13 +50,26 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 }
 
 
-.aos-small-status {
+
+
+.aos-title {
+	font-size: 120%;
+	font-weight: bold;
+}
+
+.aos-goal-status {
 	font-size: 80%;
 	text-align: center;
 	padding: 0 1em 0 0;
 }
 
-.aos-title {
-	font-size: 120%;
+.aos-goal-field {
+	font-weight: bold;
+	padding: 0.5em;
+	width:30%;
 }
 
+.aos-goal-data {
+	padding: 0.5em;
+	width: 70%;
+}

@@ -1,6 +1,10 @@
 Ext.define('AOS.view.Goals', {
     extend: 'Ext.Container',
-    requires: ['AOS.store.Goals','AOS.model.Goal','Ext.dataview.List','AOS.view.bar.TopToolbar'],
+    requires: [	'AOS.store.Goals',
+				'AOS.model.Goal',
+				'Ext.dataview.List',
+				'AOS.view.bar.TopToolbar',
+				'AOS.view.goals.GoalDisplay'],
     config: {
         layout: 'fit',
         items: [
@@ -13,7 +17,7 @@ Ext.define('AOS.view.Goals', {
 		        xtype: 'list',
 		        store: 'Goals',
 				itemId: 'list-display',
-		        itemTpl: ' <table width="100%"><tr><td class="aos-title" width="100%">{title}</td><td class="aos-small-status"><b>Completed</b><br/>{completion}%</td><td class="aos-small-status"><b>Spent</b><br/>{total_time_spent} hours</td><td class="aos-small-status"><b>Dedication</b><br/>{dedication}%</td></tr></table>',
+		        itemTpl: ' <table width="100%"><tr><td class="aos-title" width="100%">{title}</td><td class="aos-goal-status"><b>Completed</b><br/>{completion}%</td><td class="aos-goal-status"><b>Spent</b><br/>{total_time_spent} hours</td><td class="aos-goal-status"><b>Dedication</b><br/>{dedication}%</td></tr></table>',
 				listeners: {
 					select: function() {
 						var father = this.parent;
@@ -36,7 +40,10 @@ Ext.define('AOS.view.Goals', {
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								alert("Meh "+selected[0].get('title'));
+								if(!grandfather.overlay){
+									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.goals.GoalDisplay'));
+								}
+								grandfather.overlay.popUp(selected[0]);
 							}
 						}
 					},
@@ -44,11 +51,6 @@ Ext.define('AOS.view.Goals', {
 						disabled: true,
 						itemId: 'goal-tasks',
 						iconCls: 'aos-icon-tasks'
-					},
-					{
-						disabled: true,
-						itemId: 'goal-edit',
-						iconCls: 'aos-icon-edit'
 					},
 					{
 						disabled: true,
