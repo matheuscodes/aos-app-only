@@ -18,7 +18,7 @@ Ext.application({
 	],
 
 	views: [
-		'Login','Forgot','Signup','Statistics','Goals'
+		'Login','Forgot','Signup','Statistics','Goals','Tasks'
 	],
 
 	controllers: [
@@ -26,7 +26,7 @@ Ext.application({
 	],
 
 	stores: [
-		'Goals'
+		'Goals','Tasks'
 	],
 
 	icon: {
@@ -104,6 +104,15 @@ Ext.application({
 				iconCls: 'aos-icon-goals',
 				handler: function(){
 					helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'up' });
+					Ext.Viewport.toggleMenu('top');
+				}
+			},
+			{
+				xtype: 'button',
+				text: 'Tasks',
+				iconCls: 'aos-icon-tasks',
+				handler: function(){
+					helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
