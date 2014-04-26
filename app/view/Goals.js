@@ -2,6 +2,7 @@ Ext.define('AOS.view.Goals', {
     extend: 'Ext.Container',
     requires: [	'AOS.store.Goals',
 				'AOS.model.Goal',
+				'AOS.form.Task',
 				'Ext.dataview.List',
 				'AOS.view.bar.TopToolbar',
 				'AOS.view.goals.GoalDisplay'],
@@ -22,6 +23,7 @@ Ext.define('AOS.view.Goals', {
 					select: function() {
 						var father = this.parent;
 						father.down('#goal-details').enable();
+						father.down('#goal-tasks').enable();
 					}
 				}
 		    },
@@ -50,7 +52,16 @@ Ext.define('AOS.view.Goals', {
 					{
 						disabled: true,
 						itemId: 'goal-tasks',
-						iconCls: 'aos-icon-tasks'
+						iconCls: 'aos-icon-tasks',
+						handler: function(){
+							var grandfather = this.parent.parent;
+							var selected = grandfather.down('#list-display').getSelection();
+							if(selected && selected.length > 0){
+								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
+								//TODO change all goal name to goal title
+								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
+							}
+						}
 					},
 					{
 						disabled: true,
