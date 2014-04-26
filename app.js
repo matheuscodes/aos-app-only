@@ -67,7 +67,7 @@ Ext.application({
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.view.Goals'));
+				Ext.Viewport.add(Ext.create('AOS.form.Task'));
 			}
 		});
 		
@@ -87,14 +87,13 @@ Ext.application({
 
 	buildMainMenu: function(){
 		var menu = Ext.create('Ext.Menu');
-		var helper = Ext.create('AOS.Helper');
 		menu.add([
 			{
 				xtype: 'button',
 				text: 'Statistics',
 				iconCls: 'aos-icon-statistics',
 				handler: function(){
-					helper.fireEvent('switching','AOS.view.Statistics',{ type: 'slide', direction: 'up' });
+					AOS.Helper.fireEvent('switching','AOS.view.Statistics',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -103,7 +102,7 @@ Ext.application({
 				text: 'Goals',
 				iconCls: 'aos-icon-goals',
 				handler: function(){
-					helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'up' });
+					AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -112,7 +111,7 @@ Ext.application({
 				text: 'Tasks',
 				iconCls: 'aos-icon-tasks',
 				handler: function(){
-					helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'up' });
+					AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -121,7 +120,7 @@ Ext.application({
 				text: 'Log Out',
 				iconCls: 'aos-icon-logout',
 				handler: function(){
-					helper.fireEvent('logout');
+					AOS.Helper.fireEvent('logout');
 					Ext.Viewport.toggleMenu('top');
 				}
 			}
