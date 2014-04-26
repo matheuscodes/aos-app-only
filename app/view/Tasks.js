@@ -2,7 +2,9 @@ Ext.define('AOS.view.Tasks', {
     extend: 'Ext.Container',
     requires: [	'AOS.store.Tasks',
 				'AOS.model.Task',
+				'AOS.form.Task',
 				'Ext.dataview.List',
+				'AOS.Helper',
 				'AOS.view.bar.TopToolbar',
 				'AOS.view.overlay.TaskOverlay'],
     config: {
@@ -18,7 +20,7 @@ Ext.define('AOS.view.Tasks', {
 		        store: 'Tasks',
 				itemId: 'list-display',
 		        itemTpl:	'<table width="100%"><tr>'+
-							'<td class="aos-title" width="100%">{title}</td>'+
+							'<td class="aos-title" width="100%">{name}</td>'+
 							'<td class="aos-goal-status"><b>Initial</b><br/>{initial}</td>'+
 							'<td class="aos-goal-status"><b>Current</b><br/>{current}</td>'+
 							'<td class="aos-goal-status"><b>Target</b><br/>{target}</td>'+
@@ -47,10 +49,8 @@ Ext.define('AOS.view.Tasks', {
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								if(!grandfather.overlay){
-									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.overlay.TaskOverlay'));
-								}
-								grandfather.overlay.popUp(selected[0]);
+								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
+								Ext.Viewport.getActiveItem().setRecord(selected[0]);
 							}
 						}
 					},

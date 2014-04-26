@@ -14,7 +14,7 @@ Ext.application({
 	name: 'AOS',
 
 	requires: [
-		'Ext.MessageBox','Ext.Ajax','Ext.Menu','AOS.Helper'
+		'Ext.MessageBox','Ext.Ajax','Ext.Menu','AOS.Helper','AOS.form.Task'
 	],
 
 	views: [

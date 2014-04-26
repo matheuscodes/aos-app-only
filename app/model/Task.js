@@ -3,7 +3,7 @@ Ext.define('AOS.model.Task', {
 		requires: ['Ext.data.proxy.Rest'],
 		config: {
 		    fields: [
-				'id','name','initial','current','total_time_spent','completion','goal_title','target'
+				'id','goal_id','name','initial','current','total_time_spent','completion','goal_title','target'
 			],
 			proxy:{
 				type: 'rest',
