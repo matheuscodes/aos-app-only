@@ -70,6 +70,7 @@ Ext.define('AOS.controller.Principal', {
 					me.showView('AOS.view.Login',{ type: 'pop' });
 				},
 				failure: function (response) {
+					Ext.Msg.alert('Error '+response.status, 'Oops, something went wrong.', Ext.emptyFn);
 					me.showView('AOS.view.Login',{ type: 'pop' });
 				}
 			});
