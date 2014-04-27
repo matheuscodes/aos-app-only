@@ -34,6 +34,7 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 @include icon("aos-icon-new","\68","PWSmallIcons");
 @include icon("aos-icon-back","\73","PWSmallIcons");
 @include icon("aos-icon-save","\3d","PWSmallIcons");
+@include icon("aos-icon-worklog","\70","PWSmallIcons");
 
 /* Overwrite for Icon Size */
 .x-tab .x-button-icon {

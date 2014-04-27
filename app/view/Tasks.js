@@ -28,9 +28,8 @@ Ext.define('AOS.view.Tasks', {
 							'</tr></table>',
 				grouped: true,
 				listeners: {
-					select: function() {
-						var father = this.parent;
-						father.down('#goal-details').enable();
+					select: function(){
+						this.parent.enableActions();
 					}
 				}
 		    },
@@ -43,7 +42,8 @@ Ext.define('AOS.view.Tasks', {
 				items:[
 					{
 						disabled: true,
-						itemId: 'goal-details',
+						itemId: 'task-edit',
+						text: 'Edit',
 						iconCls: 'aos-icon-details',
 						handler: function(){
 							var grandfather = this.parent.parent;
@@ -56,26 +56,40 @@ Ext.define('AOS.view.Tasks', {
 					},
 					{
 						disabled: true,
-						itemId: 'goal-tasks',
-						iconCls: 'aos-icon-tasks',
-						text: 'New'
-					},
-					{
+						itemId: 'task-remove',
+						text: 'Remove',
+						iconCls: 'aos-icon-remove',
 						disabled: true,
-						itemId: 'goal-remove',
-						iconCls: 'aos-icon-remove'
+						handler: function(){
+							var grandfather = this.parent.parent;
+							var selected = grandfather.down('#list-display').getSelection();
+							if(selected && selected.length > 0){
+								Ext.getStore('Tasks').remove(selected[0]);
+								selected[0].erase();
+								grandfather.disableActions();
+							}
+						}
 					},
 					{
-						itemId: 'new-goal',
-						iconCls: 'aos-icon-new'
+						itemId: 'task-worklog',
+						text: 'Log work',
+						iconCls: 'aos-icon-worklog'
 					}
 				]
 			}
-		],
+		]/* too much network usage,
 		listeners: {
 		    show: function() {
 		       Ext.getStore('Tasks').load();
 		    }
-		}
-    }
+		}*/
+    },
+	enableActions: function(){
+		this.down('#task-edit').enable();
+		this.down('#task-remove').enable();
+	},
+	disableActions: function(){
+		this.down('#task-edit').disable();
+		this.down('#task-remove').disable();
+	}
 });
