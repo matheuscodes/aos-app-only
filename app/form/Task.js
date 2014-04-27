@@ -21,7 +21,7 @@ Ext.define('AOS.form.Task',{
 						align: 'left',
 						handler: function(){
 							var form = this.parent.parent.parent;
-							if(form.getRecord){
+							if(form.getRecord()){
 								AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 							}
 							else{
