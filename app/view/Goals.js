@@ -59,6 +59,7 @@ Ext.define('AOS.view.Goals', {
 							if(selected && selected.length > 0){
 								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
 								//TODO change all goal name to goal title
+								//TODO change to update store tasks too
 								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
 							}
 						}
