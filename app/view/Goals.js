@@ -2,10 +2,10 @@ Ext.define('AOS.view.Goals', {
     extend: 'Ext.Container',
     requires: [	'AOS.store.Goals',
 				'AOS.model.Goal',
-				'AOS.form.Task',
 				'Ext.dataview.List',
 				'AOS.view.bar.TopToolbar',
-				'AOS.view.goals.GoalDisplay'],
+				'AOS.view.goals.GoalDisplay',
+				'AOS.form.Task'],
     config: {
         layout: 'fit',
         items: [
@@ -21,9 +21,7 @@ Ext.define('AOS.view.Goals', {
 		        itemTpl: ' <table width="100%"><tr><td class="aos-title" width="100%">{title}</td><td class="aos-goal-status"><b>Completed</b><br/>{completion}%</td><td class="aos-goal-status"><b>Spent</b><br/>{total_time_spent} hours</td><td class="aos-goal-status"><b>Dedication</b><br/>{dedication}%</td></tr></table>',
 				listeners: {
 					select: function() {
-						var father = this.parent;
-						father.down('#goal-details').enable();
-						father.down('#goal-tasks').enable();
+						this.parent.enableActions();
 					}
 				}
 		    },
@@ -37,6 +35,7 @@ Ext.define('AOS.view.Goals', {
 					{
 						disabled: true,
 						itemId: 'goal-details',
+						text: 'Details',
 						iconCls: 'aos-icon-details',
 						handler: function(){
 							var grandfather = this.parent.parent;
@@ -51,35 +50,59 @@ Ext.define('AOS.view.Goals', {
 					},
 					{
 						disabled: true,
-						itemId: 'goal-tasks',
-						iconCls: 'aos-icon-tasks',
+						itemId: 'goal-remove',
+						text: 'Remove',
+						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
-								//TODO change all goal name to goal title
-								//TODO change to update store tasks too
-								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
+								Ext.getStore('Goals').remove(selected[0]);
+								selected[0].erase();
+								grandfather.disableActions();
 							}
 						}
 					},
 					{
 						disabled: true,
-						itemId: 'goal-remove',
-						iconCls: 'aos-icon-remove'
+						itemId: 'goal-tasks',
+						text: 'New Task',
+						iconCls: 'aos-icon-tasks',
+						align: 'left',
+						handler: function(){
+							var grandfather = this.parent.parent.parent;
+							var selected = grandfather.down('#list-display').getSelection();
+							if(selected && selected.length > 0){
+								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
+								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
+							}
+						}
 					},
 					{
 						itemId: 'new-goal',
-						iconCls: 'aos-icon-new'
+						text: 'New Goal',
+						iconCls: 'aos-icon-new',
+						handler: function(){
+							AOS.Helper.fireEvent('switching','AOS.form.Goal',{ type: 'slide', direction: 'left' });
+						}
 					}
 				]
 			}
-		],
+		]/*,
 		listeners: {
 		    show: function() {
 		       Ext.getStore('Goals').load();
 		    }
-		}
-    }
+		}*/
+    },
+	enableActions: function(){
+		this.down('#goal-details').enable();
+		this.down('#goal-remove').enable();
+		this.down('#goal-tasks').enable();
+	},
+	disableActions: function(){
+		this.down('#goal-details').disable();
+		this.down('#goal-remove').disable();
+		this.down('#goal-tasks').enable();
+	}
 });

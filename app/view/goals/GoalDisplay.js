@@ -1,6 +1,6 @@
 Ext.define('AOS.view.goals.GoalDisplay',{
 		extend: 'Ext.Panel',
-		requires: ['Ext.TitleBar','Ext.Anim'],
+		requires: ['Ext.TitleBar','Ext.Anim','AOS.form.Goal'],
 		config:{
 			modal:true,
 			hideOnMaskTap: true,
@@ -8,8 +8,6 @@ Ext.define('AOS.view.goals.GoalDisplay',{
 			width: '60%',
 			height: '40%',
 			scrollable: true,
-			styleHtmlContent: true,
-			html: 'bla bla',
 			showAnimation:{
 				type: 'popIn',
 				duration: 250
@@ -23,32 +21,47 @@ Ext.define('AOS.view.goals.GoalDisplay',{
 					xtype:'titlebar',
 					itemId: 'goaldisplay-titlebar',
 					docked: 'top',
-					items: {
-						itemId: 'goaldisplay-edit',
-						iconCls: 'aos-icon-edit',
-						align: 'right'
-					}
+					items: [
+						{
+							itemId: 'goaldisplay-edit',
+							text: 'Edit',
+							iconCls: 'aos-icon-edit',
+							align: 'right',
+							handler: function(){
+								var grandgrandfather = this.parent.parent.parent;
+								var selected = grandgrandfather.goal_record;
+								if(grandgrandfather){
+									if(selected){
+										AOS.Helper.fireEvent('switching','AOS.form.Goal',{ type: 'slide', direction: 'left' });
+										Ext.Viewport.getActiveItem().setRecord(selected);
+									}
+									grandgrandfather.hide();
+								}
+							}
+						}
+					]
 				}
 			]
 		},
 		popUp: function(item){
+			this.goal_record = item;
 			var html = '<table>';
 			//TODO field names need to be configurable as in API
 			html += '<tr><td class="aos-goal-field">Time Planned:</td>';
-			html += '<td class="aos-goal-data">'+item.get('time_planned')+' hours</td></tr>';
+			html += '<td class="aos-goal-data">'+this.goal_record.get('time_planned')+' hours</td></tr>';
 			html += '<tr><td class="aos-goal-field">Time Spent:</td>';
-			html += '<td class="aos-goal-data">'+item.get('total_time_spent')+' hours</td></tr>';
-			if(item.get('dedication')){
+			html += '<td class="aos-goal-data">'+this.goal_record.get('total_time_spent')+' hours</td></tr>';
+			if(this.goal_record.get('dedication')){
 				html += '<tr><td class="aos-goal-field">Dedication:</td>';
-				html += '<td class="aos-goal-data">'+item.get('dedication')+'%</td></tr>';
+				html += '<td class="aos-goal-data">'+this.goal_record.get('dedication')+'%</td></tr>';
 			}
 			html += '<tr><td class="aos-goal-field">Completion:</td>';
-			html += '<td class="aos-goal-data">'+item.get('completion')+'%</td></tr>';
+			html += '<td class="aos-goal-data">'+this.goal_record.get('completion')+'%</td></tr>';
 			html += '<tr><td class="aos-goal-field">Description:</td><td/></tr>';
-			html += '<tr><td class="aos-goal-data" colspan=2><p>'+item.get('description')+'</p></td></tr>';
+			html += '<tr><td class="aos-goal-data" colspan=2><p>'+this.goal_record.get('description')+'</p></td></tr>';
 			html += '</table>';
 			this.setHtml(html);
-			this.down('#goaldisplay-titlebar').setTitle(item.get('title'));
+			this.down('#goaldisplay-titlebar').setTitle(this.goal_record.get('title'));
 			this.show();
 		}
 	});
