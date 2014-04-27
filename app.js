@@ -18,7 +18,7 @@ Ext.application({
 	],
 
 	views: [
-		'Login','Forgot','Signup','Statistics','Goals','Tasks'
+		'Login','Forgot','Signup','Statistics','Goals','Tasks','Worklog'
 	],
 
 	controllers: [
@@ -26,7 +26,7 @@ Ext.application({
 	],
 
 	stores: [
-		'Goals','Tasks'
+		'Goals','Tasks','Worklog'
 	],
 
 	icon: {
@@ -67,7 +67,7 @@ Ext.application({
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.form.Task'));
+				Ext.Viewport.add(Ext.create('AOS.form.Login'));
 			}
 		});
 		
@@ -112,6 +112,15 @@ Ext.application({
 				iconCls: 'aos-icon-tasks',
 				handler: function(){
 					AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'up' });
+					Ext.Viewport.toggleMenu('top');
+				}
+			},
+			{
+				xtype: 'button',
+				text: 'Worklog',
+				iconCls: 'aos-icon-worklog',
+				handler: function(){
+					AOS.Helper.fireEvent('switching','AOS.view.Worklog',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
