@@ -1,4 +1,4 @@
-Ext.define('AOS.view.goals.GoalDisplay',{
+Ext.define('AOS.view.overlay.GoalOverlay',{
 		extend: 'Ext.Panel',
 		requires: ['Ext.TitleBar','Ext.Anim','AOS.form.Goal'],
 		config:{

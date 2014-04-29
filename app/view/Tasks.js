@@ -41,10 +41,10 @@ Ext.define('AOS.view.Tasks', {
 				layout: {pack:'center'},
 				items:[
 					{
-						disabled: true,
 						itemId: 'task-edit',
 						text: 'Edit',
 						iconCls: 'aos-icon-details',
+						disabled: true,
 						handler: function(){
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
@@ -87,9 +87,11 @@ Ext.define('AOS.view.Tasks', {
 	enableActions: function(){
 		this.down('#task-edit').enable();
 		this.down('#task-remove').enable();
+		this.down('#task-worklog').enable();
 	},
 	disableActions: function(){
 		this.down('#task-edit').disable();
 		this.down('#task-remove').disable();
+		this.down('#task-worklog').disable();
 	}
 });

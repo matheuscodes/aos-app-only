@@ -4,7 +4,7 @@ Ext.define('AOS.view.Goals', {
 				'AOS.model.Goal',
 				'Ext.dataview.List',
 				'AOS.view.bar.TopToolbar',
-				'AOS.view.goals.GoalDisplay',
+				'AOS.view.overlay.GoalOverlay',
 				'AOS.form.Task'],
     config: {
         layout: 'fit',
@@ -42,7 +42,7 @@ Ext.define('AOS.view.Goals', {
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
 								if(!grandfather.overlay){
-									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.goals.GoalDisplay'));
+									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.overlay.GoalOverlay'));
 								}
 								grandfather.overlay.popUp(selected[0]);
 							}
@@ -70,7 +70,7 @@ Ext.define('AOS.view.Goals', {
 						iconCls: 'aos-icon-tasks',
 						align: 'left',
 						handler: function(){
-							var grandfather = this.parent.parent.parent;
+							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
 								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });

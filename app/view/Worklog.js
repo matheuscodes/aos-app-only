@@ -16,7 +16,12 @@ Ext.define('AOS.view.Worklog', {
 		        xtype: 'list',
 		        store: 'Worklog',
 				itemId: 'list-display',
-		        itemTpl: ' <table width="100%"><tr><td class="aos-title" width="100%">{start} {goal_title}<br/>{task_name}</td><td class="aos-goal-status"><b>Spent</b><br/>{time_spent} hours</td></tr></table>',
+		        itemTpl:	' <table width="100%">'+
+							'<tr><td class="aos-date" width="100%">{start}</td>'+
+							'<td class="aos-goal-status" rowspan="3"><b>Spent</b><br/>{time_spent} hours</td></tr>'+
+							'<tr><td class="aos-normal" width="100%">{task_name}</td></tr>'+
+							'<tr><td class="aos-small" width="100%">{goal_title}</td></tr>'+
+							'</table>',
 				listeners: {
 					select: function() {
 						this.parent.enableActions();
@@ -59,29 +64,6 @@ Ext.define('AOS.view.Worklog', {
 								selected[0].erase();
 								grandfather.disableActions();
 							}
-						}
-					},
-					{
-						disabled: true,
-						itemId: 'goal-tasks',
-						text: 'New Task',
-						iconCls: 'aos-icon-tasks',
-						align: 'left',
-						handler: function(){
-							var grandfather = this.parent.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
-							if(selected && selected.length > 0){
-								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
-								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
-							}
-						}
-					},
-					{
-						itemId: 'new-goal',
-						text: 'New Goal',
-						iconCls: 'aos-icon-new',
-						handler: function(){
-							AOS.Helper.fireEvent('switching','AOS.form.Goal',{ type: 'slide', direction: 'left' });
 						}
 					}
 				]

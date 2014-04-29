@@ -60,6 +60,21 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 	font-weight: bold;
 }
 
+.aos-date {
+	font-size: 70%;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.aos-normal {
+	font-size: 100%;
+}
+
+.aos-small {
+	font-size: 70%;
+	font-style: italic;
+}
+
 .aos-goal-status {
 	font-size: 80%;
 	text-align: center;
