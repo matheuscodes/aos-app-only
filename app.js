@@ -14,7 +14,7 @@ Ext.application({
 	name: 'AOS',
 
 	requires: [
-		'Ext.MessageBox','Ext.Ajax','Ext.Menu','AOS.Helper','AOS.form.Task'
+		'Ext.MessageBox','Ext.Ajax','Ext.Menu','Ext.Button','AOS.Helper'
 	],
 
 	views: [
@@ -57,17 +57,17 @@ Ext.application({
 		// Initialize the main view
 		Ext.Ajax.request({
 			url: 'login',
-			method: 'post',
+			method: 'POST',
 			success: function (response) {
 				if(response.status == 200){
-					Ext.Viewport.add(Ext.create('AOS.view.Statistics'));
+					Ext.Viewport.add(Ext.create('AOS.view.Goals'));
 				}
 				else{
 					Ext.Viewport.add(Ext.create('AOS.view.Login'));
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.form.Login'));
+				Ext.Viewport.add(Ext.create('AOS.view.Login'));
 			}
 		});
 		

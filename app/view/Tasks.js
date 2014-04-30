@@ -3,6 +3,7 @@ Ext.define('AOS.view.Tasks', {
     requires: [	'AOS.store.Tasks',
 				'AOS.model.Task',
 				'AOS.form.Task',
+				'AOS.form.Work',
 				'Ext.dataview.List',
 				'AOS.Helper',
 				'AOS.view.bar.TopToolbar',
@@ -66,6 +67,8 @@ Ext.define('AOS.view.Tasks', {
 							if(selected && selected.length > 0){
 								Ext.getStore('Tasks').remove(selected[0]);
 								selected[0].erase();
+								Ext.getStore('Goals').load();
+								Ext.getStore('Worklog').load();
 								grandfather.disableActions();
 							}
 						}
@@ -73,7 +76,16 @@ Ext.define('AOS.view.Tasks', {
 					{
 						itemId: 'task-worklog',
 						text: 'Log work',
-						iconCls: 'aos-icon-worklog'
+						iconCls: 'aos-icon-worklog',
+						disabled: true,
+						handler: function(){
+							var grandfather = this.parent.parent;
+							var selected = grandfather.down('#list-display').getSelection();
+							if(selected && selected.length > 0){
+								AOS.Helper.fireEvent('switching','AOS.form.Work',{ type: 'slide', direction: 'left' });
+								Ext.Viewport.getActiveItem().setTask(selected[0].get('id'),selected[0].get('name'));
+							}
+						}
 					}
 				]
 			}

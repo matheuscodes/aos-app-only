@@ -59,6 +59,8 @@ Ext.define('AOS.view.Goals', {
 							if(selected && selected.length > 0){
 								Ext.getStore('Goals').remove(selected[0]);
 								selected[0].erase();
+								Ext.getStore('Tasks').load();
+								Ext.getStore('Worklog').load();
 								grandfather.disableActions();
 							}
 						}

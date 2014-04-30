@@ -37,7 +37,7 @@ Ext.define('AOS.view.Worklog', {
 				items:[
 					{
 						disabled: true,
-						itemId: 'goal-details',
+						itemId: 'work-details',
 						text: 'Details',
 						iconCls: 'aos-icon-details',
 						handler: function(){
@@ -53,15 +53,17 @@ Ext.define('AOS.view.Worklog', {
 					},
 					{
 						disabled: true,
-						itemId: 'goal-remove',
+						itemId: 'work-remove',
 						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								Ext.getStore('Goals').remove(selected[0]);
+								Ext.getStore('Worklog').remove(selected[0]);
 								selected[0].erase();
+								Ext.getStore('Tasks').load();
+								Ext.getStore('Goals').load();
 								grandfather.disableActions();
 							}
 						}
@@ -76,13 +78,11 @@ Ext.define('AOS.view.Worklog', {
 		}*/
     },
 	enableActions: function(){
-		/*this.down('#goal-details').enable();
-		this.down('#goal-remove').enable();
-		this.down('#goal-tasks').enable();*/
+		this.down('#work-details').enable();
+		this.down('#work-remove').enable();
 	},
 	disableActions: function(){
-		/*this.down('#goal-details').disable();
-		this.down('#goal-remove').disable();
-		this.down('#goal-tasks').enable();*/
+		this.down('#work-details').disable();
+		this.down('#work-remove').disable();
 	}
 });
