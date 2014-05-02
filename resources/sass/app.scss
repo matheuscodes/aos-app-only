@@ -35,6 +35,13 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 @include icon("aos-icon-back","\73","PWSmallIcons");
 @include icon("aos-icon-save","\3d","PWSmallIcons");
 @include icon("aos-icon-worklog","\70","PWSmallIcons");
+@include icon("aos-icon-overview","\44","PWSmallIcons");
+@include icon("aos-icon-time","\79","PWSmallIcons");
+@include icon("aos-icon-focus","\5f","PWSmallIcons");
+@include icon("aos-icon-completion","\7a","PWSmallIcons");
+@include icon("aos-icon-dedication","\3b","PWSmallIcons");
+@include icon("aos-icon-productivity","\27","PWSmallIcons");
+
 
 /* Overwrite for Icon Size */
 .x-tab .x-button-icon {

@@ -1,7 +1,7 @@
 Ext.define('AOS.view.Login', {
 		extend: 'Ext.Panel',
 		alias: 'widget.principal',
-		requires: [	'Ext.form.FieldSet', 
+		requires: [	'Ext.form.FieldSet',
 					'Ext.field.Password', 
 					'Ext.Label', 
 					'Ext.Img', 
@@ -69,6 +69,9 @@ Ext.define('AOS.view.Login', {
 								},
 								success: function (response) {
 									me.down('#loginErrorMessage').setHtml('');
+									Ext.getStore('Worklog').load();
+									Ext.getStore('Tasks').load();
+									Ext.getStore('Goals').load();
 									me.fireEvent('switching','AOS.view.Statistics',{ type: 'pop' });
 								},
 								failure: function (response) {

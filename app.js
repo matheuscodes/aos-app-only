@@ -67,7 +67,7 @@ Ext.application({
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.view.Statistics'));
+				Ext.Viewport.add(Ext.create('AOS.view.Login'));
 			}
 		});
 		

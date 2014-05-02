@@ -1,6 +1,6 @@
-Ext.define('AOS.view.statistics.CompletionGraph', {
+Ext.define('AOS.view.statistics.DedicationGraph', {
 	extend: 'Ext.chart.CartesianChart',
-	xtype: 'aos-completion-graph',
+	xtype: 'aos-dedication-graph',
 	requires: ['Ext.chart.series.Line','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper'],
 	config: {
 		animate: true,
@@ -10,7 +10,7 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 				type: 'numeric',
 				position: 'left',
 				title: {
-					text: 'Completion'
+					text: 'Dedication'
 				},
 				grid: true,
 				minimum: 0
@@ -29,7 +29,7 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 		this.callParent(arguments);
 		var me = this;
 		Ext.Ajax.request({
-			url: 'statistics/completion',
+			url: 'statistics/dedication',
 			method: 'GET',
 			params: {
 				periodicity: "monthly"
@@ -38,9 +38,9 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 				var stats = Ext.JSON.decode(response.responseText);
 				me.setStore(Ext.create('Ext.data.Store',{
 					fields: stats['fields'],
-					data: stats['completions']
+					data: stats['dedications']
 				}))
-				
+
 				var newseries = me.getSeries();
 				for(var i = 1; i < stats['fields'].length; i++){
 					var newone = {
@@ -54,9 +54,9 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 						yField: stats['fields'][i],
 						title: stats['titles'][stats['fields'][i]],
 						marker: {
-							type: 'path',
-							path: ['M', -6, 0, 0, 6, 6, 0, 0, -6, 'Z'],
+							type: 'circle',
 							stroke: AOS.Helper.getKeyColor(stats['fields'][i]),
+							radius: 4,
 							lineWidth: 0
 						}
 					};
