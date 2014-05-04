@@ -63,7 +63,7 @@ Ext.application({
 					Ext.getStore('Worklog').load();
 					Ext.getStore('Tasks').load();
 					Ext.getStore('Goals').load();
-					Ext.Viewport.add(Ext.create('AOS.view.Goals'));
+					Ext.Viewport.add(Ext.create('AOS.view.Statistics'));
 				}
 				else{
 					Ext.Viewport.add(Ext.create('AOS.view.Login'));
