@@ -58,7 +58,7 @@ Ext.define('AOS.view.Login', {
 						var user_name = me.down('#userNameTextField').getValue();
 						var password = me.down('#passwordTextField').getValue()
 						//TODO make a hash.
-						var hashed_password = password;
+						var hashed_password = CryptoJS.MD5(password);
 						if(user_name && password){
 							Ext.Ajax.request({
 								url: 'login',

@@ -71,10 +71,16 @@ Ext.define('AOS.view.Statistics', {
 					{xtype:'aos-focus-graph'}
 				]
 			}
-		]
+		],
+		listeners: {
+		    show: function() {
+		       this.initialize();
+		    }
+		}
 	},
 	initialize: function(){
 		this.callParent(arguments);
+		console.log("lbaaaaa");
 		var me = this;
 		Ext.Ajax.request({
 			url: 'statistics',

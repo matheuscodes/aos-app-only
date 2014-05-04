@@ -24,7 +24,7 @@
      *      {
      *          "path": "path/to/script.js" // Path to file, if local file it must be relative to this app.json file
      *          "remote": true              // (Optional)
-     *                                      // - Defaults to undefined (falsey) to signal a local file which will be copied
+     *                                      // - Defaults to undefined (false) to signal a local file which will be copied
      *                                      // - Specify true if this file is a remote file which will not to be copied
      *          "update": "delta"           // (Optional)
      *                                      //  - If not specified, this file will only be loaded once, and
@@ -43,6 +43,10 @@
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },
+		{
+			"path":"resources/scripts/crypto-js-md5.js",
+			"update":"full"
+		},
         {
             "path": "bootstrap.js",
             "x-bootstrap": true
@@ -73,7 +77,7 @@
     "css": [
         {
             "path": "resources/css/app.css",
-            "update": "delta"
+            "update": "full"
         }
     ],
 
@@ -106,7 +110,8 @@
         "resources/images",
         "resources/icons",
         "resources/startup",
-        "resources/fonts"
+        "resources/fonts",
+		"resources/scripts"
     ],
 
     /**

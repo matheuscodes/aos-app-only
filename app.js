@@ -60,6 +60,9 @@ Ext.application({
 			method: 'POST',
 			success: function (response) {
 				if(response.status == 200){
+					Ext.getStore('Worklog').load();
+					Ext.getStore('Tasks').load();
+					Ext.getStore('Goals').load();
 					Ext.Viewport.add(Ext.create('AOS.view.Goals'));
 				}
 				else{

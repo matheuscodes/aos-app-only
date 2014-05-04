@@ -127,7 +127,7 @@ Ext.define('AOS.view.Signup', {
 							me.fireEvent('error',"Emails do not match",me.down('#signupErrorMessage'));
 						else { 
 							//TODO make a hash.
-							var hashed_password = password;
+							var hashed_password = CryptoJS.MD5(password);
 							Ext.Ajax.request({
 								url: 'signup',
 								method: 'post',
