@@ -96,17 +96,20 @@ Ext.define('AOS.form.Task',{
 				xtype: 'textfield',
 				itemId: 'goal-title',
 				name: 'goal_title',
-				label: 'Goal Name'
+				label: 'Goal Name',
+				readOnly:true
 			},
 			{
 				xtype: 'textfield',
 				name: 'name',
-				label: 'Task Name'
+				label: 'Task Name',
+				required: true
 			},
 			{
 				xtype: 'textfield',
 				name: 'initial',
-				label: 'Initial'
+				label: 'Initial',
+				required: true
 			},
 			{
 				xtype: 'textfield',
@@ -117,7 +120,8 @@ Ext.define('AOS.form.Task',{
 			{
 				xtype: 'textfield',
 				name: 'target',
-				label: 'Target'
+				label: 'Target',
+				required: true
 			},
 			{
 				xtype: 'textfield',
@@ -127,13 +131,16 @@ Ext.define('AOS.form.Task',{
 			}
 		],
 		defaults: {
-		    listeners: {
-		        change: function(field, newVal, oldVal) {
-					if(oldVal){
-						this.parent.down('#save-button').enable();
-					}
-		        }
-		    }
+			listeners: {
+				change: function(field, newVal, oldVal) {
+					this.parent.down('#save-button').enable();
+				}
+			}
+		},
+		listeners: {
+			show: function() {
+				this.down('#save-button').disable();
+			}
 		}
 	}
 });

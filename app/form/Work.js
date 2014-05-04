@@ -162,13 +162,16 @@ Ext.define('AOS.form.Work',{
 			}
 		],
 		defaults: {
-		    listeners: {
-		        change: function(field, newVal, oldVal) {
-					if(oldVal){
-						this.parent.down('#save-button').enable();
-					}
-		        }
-		    }
+			listeners: {
+				change: function(field, newVal, oldVal) {
+					this.parent.down('#save-button').enable();
+				}
+			}
+		},
+		listeners: {
+			show: function() {
+				this.down('#save-button').disable();
+			}
 		}
 	}
 });

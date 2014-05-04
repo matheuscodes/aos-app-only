@@ -80,7 +80,6 @@ Ext.define('AOS.view.Statistics', {
 	},
 	initialize: function(){
 		this.callParent(arguments);
-		console.log("lbaaaaa");
 		var me = this;
 		Ext.Ajax.request({
 			url: 'statistics',

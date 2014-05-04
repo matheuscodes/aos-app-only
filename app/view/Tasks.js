@@ -6,8 +6,7 @@ Ext.define('AOS.view.Tasks', {
 				'AOS.form.Work',
 				'Ext.dataview.List',
 				'AOS.Helper',
-				'AOS.view.bar.TopToolbar',
-				'AOS.view.overlay.TaskOverlay'],
+				'AOS.view.bar.TopToolbar'],
     config: {
         layout: 'fit',
         items: [
