@@ -164,7 +164,10 @@ Ext.define('AOS.form.Work',{
 		defaults: {
 			listeners: {
 				change: function(field, newVal, oldVal) {
-					this.parent.down('#save-button').enable();
+					if(oldVal){
+						//TODO fix the issue for item without parent here.
+						this.parent.down('#save-button').enable();
+					}
 				}
 			}
 		},
