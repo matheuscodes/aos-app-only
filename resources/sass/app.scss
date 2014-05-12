@@ -1,6 +1,6 @@
 /* Overwrite for Theme Variables */
 $base-color: #238C23 !default;
-$font-family: 'Daniel' !default;
+$font-family: 'KingthingsTrypewriter' !default;
 $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,150,1) 100%) !default;
 
 /**
@@ -17,8 +17,8 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 }
 
 @font-face {
-        font-family: 'Daniel';
-        src: url('../fonts/daniel.ttf');
+        font-family: 'KingthingsTrypewriter';
+        src: url('../fonts/KingthingsTrypewriter2.ttf');
 }
 
 @include icon("aos-icon-calendar","(","PWSmallIcons");
@@ -43,6 +43,10 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 @include icon("aos-icon-productivity","\27","PWSmallIcons");
 
 
+html {
+	font-size:150%;
+}
+
 /* Overwrite for Icon Size */
 .x-tab .x-button-icon {
     font-size: 1.3em;
@@ -58,9 +62,6 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 .x-tabbar.x-docked-bottom {
     height: 4.3em;
 }
-
-
-
 
 .aos-title {
 	font-size: 120%;
