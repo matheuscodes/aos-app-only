@@ -39,5 +39,19 @@ Ext.define('AOS.Helper', {
 				}
 			}
 			return this.given_colors[key]+t;
+		},
+		moveToSelection: function(list){
+			if(list.getSelection()[0]){
+				var store = list.getStore();
+				selected = list.getSelection()[0];
+				idx = store.indexOf(selected);
+				els = list.getViewItems();
+
+				if(idx > 1){
+					el = els[idx-1];
+					offset = Ext.get(el.getId()).dom.offsetTop;
+					list.getScrollable().getScroller().scrollTo(0, offset);
+				}
+			}
 		}
 	});

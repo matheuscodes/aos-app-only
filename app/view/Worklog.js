@@ -44,12 +44,15 @@ Ext.define('AOS.view.Worklog', {
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
+							var list = grandfather.down('#list-display');
+							var selected = list.getSelection();
 							if(selected && selected.length > 0){
+								var before = list.getScrollable().getScroller().position.y;
 								Ext.getStore('Worklog').remove(selected[0]);
 								selected[0].erase();
 								Ext.getStore('Tasks').load();
 								Ext.getStore('Goals').load();
+								list.getScrollable().getScroller().scrollTo(0, before);
 								grandfather.disableActions();
 							}
 						}
