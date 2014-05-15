@@ -29,10 +29,6 @@ Ext.application({
 		'Login','Forgot','Signup','Statistics','Goals','Tasks','Worklog'
 	],
 
-	controllers: [
-		'Principal'
-	],
-
 	stores: [
 		'Goals','Tasks','Worklog'
 	],
@@ -104,7 +100,7 @@ Ext.application({
 				text: 'Statistics',
 				iconCls: 'aos-icon-statistics',
 				handler: function(){
-					AOS.Helper.fireEvent('switching','AOS.view.Statistics',{ type: 'slide', direction: 'up' });
+					AOS.Helper.switchTo('AOS.view.Statistics',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -113,7 +109,7 @@ Ext.application({
 				text: 'Goals',
 				iconCls: 'aos-icon-goals',
 				handler: function(){
-					AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'up' });
+					AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -122,7 +118,7 @@ Ext.application({
 				text: 'Tasks',
 				iconCls: 'aos-icon-tasks',
 				handler: function(){
-					AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'up' });
+					AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -131,7 +127,7 @@ Ext.application({
 				text: 'Worklog',
 				iconCls: 'aos-icon-worklog',
 				handler: function(){
-					AOS.Helper.fireEvent('switching','AOS.view.Worklog',{ type: 'slide', direction: 'up' });
+					AOS.Helper.switchTo('AOS.view.Worklog',{ type: 'slide', direction: 'up' });
 					Ext.Viewport.toggleMenu('top');
 				}
 			},
@@ -140,7 +136,7 @@ Ext.application({
 				text: 'Log Out',
 				iconCls: 'aos-icon-logout',
 				handler: function(){
-					AOS.Helper.fireEvent('logout');
+					AOS.Helper.logOut();
 					Ext.Viewport.toggleMenu('top');
 				}
 			}

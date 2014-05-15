@@ -1,8 +1,8 @@
 Ext.define('AOS.Helper', {
 		extend: 'Ext.Component',
 		xtype: 'aos-helper',
-		alias: 'widget.principal',
 		singleton: true,
+		viewCache: [],
 		given_colors: {},
 		color_count: 0,
 		colors:[
@@ -26,7 +26,7 @@ Ext.define('AOS.Helper', {
 			'rgba(100,100,0',
 			'rgba(0,0,0',
 			'rgba(150,150,150'
-		],		
+		],
 		getKeyColor: function(key,transparency){
 			var t = ',1.0)';
 			if(transparency){
@@ -53,5 +53,56 @@ Ext.define('AOS.Helper', {
 					list.getScrollable().getScroller().scrollTo(0, offset);
 				}
 			}
+		},
+		switchTo: function(item,animation) {
+			var view = AOS.Helper.createCachedView(item);
+			Ext.Viewport.add(view);
+			Ext.Viewport.animateActiveItem(view, animation);
+		},
+		createCachedView: function (item) {
+			var name = item;
+			var cache = this.viewCache;
+			var cache_size = cache.length;
+			/* Never more than 20 views created */
+			var cache_limit = 20;
+			var view, i, j, oldView;
+
+			for (i = 0; i < cache_size; i++) {
+				if (cache[i].viewName === name) {
+					return cache[i];
+				}
+			}
+
+			if (cache_size >= cache_limit) {
+				for (i = 0, j = 0; i < cache_size; i++) {
+					oldView = cache[i];
+					if (!oldView.isPainted()) {
+						oldView.destroy();
+					} else {
+						cache[j++] = oldView;
+					}
+				}
+				cache.length = j;
+			}
+
+			view = Ext.create(name);
+			view.viewName = name;
+			cache.push(view);
+			this.viewCache = cache;
+			return view;
+		},
+		logOut: function(){
+			var me = this;
+			Ext.Ajax.request({
+				url: 'logout',
+				method: 'post',
+				success: function (response) {
+					AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
+				},
+				failure: function (response) {
+					Ext.Msg.alert('Error '+response.status, 'Oops, something went wrong.', Ext.emptyFn);
+					AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
+				}
+			});
 		}
 	});

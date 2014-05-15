@@ -1,6 +1,5 @@
 Ext.define('AOS.view.Login', {
 		extend: 'Ext.Panel',
-		alias: 'widget.principal',
 		requires: [	'Ext.form.FieldSet',
 					'Ext.field.Password', 
 					'Ext.Label', 
@@ -37,6 +36,7 @@ Ext.define('AOS.view.Login', {
 							xtype: 'textfield',
 							placeHolder: 'Username',
 							itemId: 'userNameTextField',
+							maxLength: 13,
 							required: true
 						},
 						{
@@ -56,9 +56,8 @@ Ext.define('AOS.view.Login', {
 					handler: function () {
 						var me = this.parent;
 						var user_name = me.down('#userNameTextField').getValue();
-						var password = me.down('#passwordTextField').getValue()
-						//TODO make a hash.
-						var hashed_password = CryptoJS.MD5(password);
+						var password = me.down('#passwordTextField').getValue();
+						var hashed_password = ""+CryptoJS.MD5(password);
 						if(user_name && password){
 							Ext.Ajax.request({
 								url: 'login',
@@ -72,15 +71,15 @@ Ext.define('AOS.view.Login', {
 									Ext.getStore('Worklog').load();
 									Ext.getStore('Tasks').load();
 									Ext.getStore('Goals').load();
-									me.fireEvent('switching','AOS.view.Statistics',{ type: 'pop' });
+									AOS.Helper.switchTo('AOS.view.Statistics',{ type: 'pop' });
 								},
 								failure: function (response) {
-									me.fireEvent('error',"Login failed! "+response.statusText,me.down('#loginErrorMessage'));
+									Ext.Msg.alert('Login failed!',response.status+': '+response.statusText);
 								}
 							});
 						}
 						else{
-							me.fireEvent('error',"Username and password are required!",me.down('#loginErrorMessage'));
+							Ext.Msg.alert('Error','Username and password are required!');
 						}
 					}
 				},
@@ -91,7 +90,7 @@ Ext.define('AOS.view.Login', {
 					margin: '1%',
 					text: 'Sign Up',
 					handler: function () {
-						this.parent.fireEvent('switching','AOS.view.Signup',{ type: 'slide', direction: 'left' });
+						AOS.Helper.switchTo('AOS.view.Signup',{ type: 'slide', direction: 'left' });
 					}
 				},
 				{
@@ -101,7 +100,7 @@ Ext.define('AOS.view.Login', {
 					margin: '2%',
 					text: 'Forgot password?',
 					handler: function () {
-						this.parent.fireEvent('switching','AOS.view.Forgot',{ type: 'slide', direction: 'left' });
+						AOS.Helper.switchTo('AOS.view.Forgot',{ type: 'slide', direction: 'left' });
 					}
 				}
 			]

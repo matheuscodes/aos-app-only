@@ -22,10 +22,10 @@ Ext.define('AOS.form.Task',{
 						handler: function(){
 							var form = this.parent.parent.parent;
 							if(form.getRecord()){
-								AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'right' });
+								AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 							}
 							else{
-								AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'right' });
+								AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							}
 							form.reset();
 							form.setRecord(null);
@@ -65,7 +65,7 @@ Ext.define('AOS.form.Task',{
 									record.set('target',values.target);
 								}
 								record.save(option);
-								AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'right' });
+								AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 							}
 							else{
 								option.url = 'tasks';
@@ -73,7 +73,7 @@ Ext.define('AOS.form.Task',{
 								form.submit(option);
 								Ext.getStore('Tasks').load();
 								Ext.getStore('Goals').load();
-								AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'right' });
+								AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							}
 							form.reset();
 							form.setRecord(null);

@@ -15,7 +15,7 @@ Ext.define('AOS.form.Goal',{
 						align: 'left',
 						handler: function(){
 							var form = this.parent.parent.parent;
-							AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'right' });
+							AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							form.reset();
 							form.setRecord(null);
 						}
@@ -61,7 +61,7 @@ Ext.define('AOS.form.Goal',{
 								form.submit(option);
 								Ext.getStore('Goals').load();
 							}
-							AOS.Helper.fireEvent('switching','AOS.view.Goals',{ type: 'slide', direction: 'right' });
+							AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							form.reset();
 							form.setRecord(null);
 						}

@@ -1,7 +1,13 @@
 Ext.define('AOS.view.Signup', {
 		extend: 'Ext.Panel',
-		alias: 'widget.principal',
-		requires: ['Ext.form.FieldSet', 'Ext.field.Email','Ext.field.Password', 'Ext.Label', 'Ext.Img', 'Ext.Ajax', 'Ext.JSON'],
+		requires: [
+			'Ext.form.FieldSet',
+			'Ext.field.Email',
+			'Ext.field.Password',
+			'Ext.Label',
+			'Ext.Ajax',
+			'Ext.JSON'
+		],
 		config: {
 			title: 'Signup',
 			scrollable: 'vertical',
@@ -12,13 +18,12 @@ Ext.define('AOS.view.Signup', {
 					docked: 'top',
 					items: [
 						{
-							xtype: 'button',
+							xtype:'button',
 							text: 'Back',
-							itemId: 'backButton',
+							iconCls: 'aos-icon-back',
 							align: 'left',
 							handler: function(){
-								var me = this.parent.parent.parent;
-								me.fireEvent('switching','AOS.view.Login', { type: 'slide', direction: 'right' });
+								AOS.Helper.switchTo('AOS.view.Login', { type: 'slide', direction: 'right' });
 							}
 						}
 					]
@@ -47,6 +52,7 @@ Ext.define('AOS.view.Signup', {
 							itemId: 'newUserName',
 							name: 'newUserName',
 							label: 'Username',
+							maxLength: 13,
 							required: true
 						},
 						{
@@ -55,6 +61,7 @@ Ext.define('AOS.view.Signup', {
 							itemId: 'newFirstName',
 							name: 'newFirstName',
 							label: 'First Name',
+							maxLength: 35,
 							required: true
 						},
 						{
@@ -63,6 +70,7 @@ Ext.define('AOS.view.Signup', {
 							itemId: 'newLastName',
 							name: 'newLastName',
 							label: 'Last Name',
+							maxLength: 35,
 							required: true
 						},
 						{
@@ -71,6 +79,7 @@ Ext.define('AOS.view.Signup', {
 							itemId: 'newEmail',
 							name: 'newEmail',
 							label: 'Email',
+							maxLength: 45,
 							required: true
 						},
 						{
@@ -78,6 +87,7 @@ Ext.define('AOS.view.Signup', {
 							itemId: 'newConfirmEmail',
 							name: 'newConfirmEmail',
 							label: 'Confirm',
+							maxLength: 45,
 							required: true
 						},
 						{
@@ -113,21 +123,14 @@ Ext.define('AOS.view.Signup', {
 						var email2 = me.down('#newConfirmEmail').getValue();
 
 			
-						if(user_name.length > 13) 
-							me.fireEvent('error',"Username too long, over 13 letters",me.down('#signupErrorMessage'));
-						else if(first_name.length > 35) 
-							me.fireEvent('error',"First name too long, over 35 letters",me.down('#signupErrorMessage'));
-						else if(last_name.length > 35) 
-							me.fireEvent('error',"Last name too long, over 35 letters",me.down('#signupErrorMessage'));
-						else if(email.length > 45)
-							me.fireEvent('error',"Email too long, over 45 letters",me.down('#signupErrorMessage'));
+						if(email.indexOf("@") < 0)
+							Ext.Msg.alert('Wrong Email','Seems the given email is not valid.');
 						else if(password != password2)
-							me.fireEvent('error',"Passwords do not match",me.down('#signupErrorMessage'));
+							Ext.Msg.alert('Confirmation failed!','Seems the given passwords do not match.');
 						else if(email != email2) 
-							me.fireEvent('error',"Emails do not match",me.down('#signupErrorMessage'));
+							Ext.Msg.alert('Confirmation failed!','Seems the given emails do not match.');
 						else { 
-							//TODO make a hash.
-							var hashed_password = CryptoJS.MD5(password);
+							var hashed_password = ""+CryptoJS.MD5(password);
 							Ext.Ajax.request({
 								url: 'signup',
 								method: 'post',
@@ -141,17 +144,18 @@ Ext.define('AOS.view.Signup', {
 								success: function (response) {
 									if(response.status == 200){
 										var suggestions = Ext.JSON.decode(response.responseText);
-										me.fireEvent('error',"Username "+user_name+" is already taken, you can try<br/>"+
-														suggestions[0]+"<br/>"+suggestions[1]+"<br/>"+suggestions[2],
-														me.down('#signupErrorMessage'));
+										var error = me.down('#signupErrorMessage');
+										error.hide();
+										error.setHtml("Username "+user_name+" is already taken, you can try<br/>"+
+														suggestions[0]+"<br/>"+suggestions[1]+"<br/>"+suggestions[2]);
+										error.show();
 									}
 									else{
-										me.fireEvent('switching','AOS.view.Statistics', { type: 'pop' });
+										AOS.Helper.switchTo('AOS.view.Statistics', { type: 'pop' });
 									}
 								},
 								failure: function (response) {
-									me.fireEvent('error',"Error "+response.status+": "+response.statusText,
-													me.down('#signupErrorMessage'));
+									Ext.Msg.alert('Sign Up failed!',response.status+': '+response.statusText);
 								}
 							});
 						}

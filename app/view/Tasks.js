@@ -50,7 +50,7 @@ Ext.define('AOS.view.Tasks', {
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
+								AOS.Helper.switchTo('AOS.form.Task',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setRecord(selected[0]);
 							}
 						}
@@ -87,7 +87,7 @@ Ext.define('AOS.view.Tasks', {
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								AOS.Helper.fireEvent('switching','AOS.form.Work',{ type: 'slide', direction: 'left' });
+								AOS.Helper.switchTo('AOS.form.Work',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setTask(selected[0].get('id'),selected[0].get('name'));
 							}
 						}

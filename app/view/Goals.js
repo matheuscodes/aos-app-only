@@ -81,7 +81,7 @@ Ext.define('AOS.view.Goals', {
 							var grandfather = this.parent.parent;
 							var selected = grandfather.down('#list-display').getSelection();
 							if(selected && selected.length > 0){
-								AOS.Helper.fireEvent('switching','AOS.form.Task',{ type: 'slide', direction: 'left' });
+								AOS.Helper.switchTo('AOS.form.Task',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
 							}
 						}
@@ -92,7 +92,7 @@ Ext.define('AOS.view.Goals', {
 						text: 'New Goal',
 						iconCls: 'aos-icon-new',
 						handler: function(){
-							AOS.Helper.fireEvent('switching','AOS.form.Goal',{ type: 'slide', direction: 'left' });
+							AOS.Helper.switchTo('AOS.form.Goal',{ type: 'slide', direction: 'left' });
 						}
 					}
 				]

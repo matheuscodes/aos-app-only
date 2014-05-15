@@ -39,7 +39,7 @@ Ext.define('AOS.form.Work',{
 						align: 'left',
 						handler: function(){
 							var form = this.parent.parent.parent;
-							AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'right' });
+							AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 							form.reset();
 						}
 					},
@@ -52,6 +52,7 @@ Ext.define('AOS.form.Work',{
 						disabled: true,
 						handler: function(){
 							var me = this;
+							//TODO Find a way to get rid of those.
 							var form = this.parent.parent.parent;
 
 							var date = form.down("#work-date").getFormattedValue('Y-m-d ');
@@ -78,7 +79,7 @@ Ext.define('AOS.form.Work',{
 									Ext.getStore('Worklog').load();
 									Ext.getStore('Tasks').load();
 									Ext.getStore('Goals').load();
-									AOS.Helper.fireEvent('switching','AOS.view.Tasks',{ type: 'slide', direction: 'right' });
+									AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 									form.reset();
 									me.disable();
 								},

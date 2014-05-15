@@ -1,6 +1,5 @@
 Ext.define('AOS.view.Statistics', {
 	extend: 'Ext.tab.Panel',
-	alias: 'widget.principal',
 	requires: [
 		'Ext.TitleBar',
 		'Ext.Video',

@@ -32,7 +32,7 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 								var selected = grandgrandfather.goal_record;
 								if(grandgrandfather){
 									if(selected){
-										AOS.Helper.fireEvent('switching','AOS.form.Goal',{ type: 'slide', direction: 'left' });
+										AOS.Helper.switchTo('AOS.form.Goal',{ type: 'slide', direction: 'left' });
 										Ext.Viewport.getActiveItem().setRecord(selected);
 									}
 									grandgrandfather.hide();
