@@ -61,10 +61,9 @@ Ext.define('AOS.view.Goals', {
 							var selected = list.getSelection();
 							if(selected && selected.length > 0){
 								var before = list.getScrollable().getScroller().position.y;
-								Ext.getStore('Goals').remove(selected[0]);
-								selected[0].erase();
-								Ext.getStore('Tasks').load();
-								Ext.getStore('Worklog').load();
+								AOS.Helper.remove(selected[0],'Goals');
+								AOS.Helper.purgeStore('Tasks');
+								AOS.Helper.purgeStore('Worklog');
 								list.getScrollable().getScroller().scrollTo(0, before);
 								grandfather.disableActions();
 							}

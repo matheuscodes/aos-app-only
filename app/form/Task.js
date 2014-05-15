@@ -69,10 +69,9 @@ Ext.define('AOS.form.Task',{
 							}
 							else{
 								option.url = 'tasks';
-								option.method = 'POST';								
-								form.submit(option);
-								Ext.getStore('Tasks').load();
-								Ext.getStore('Goals').load();
+								option.method = 'POST';	
+								AOS.Helper.refreshStore('Tasks');
+								AOS.Helper.refreshStore('Goals');
 								AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							}
 							form.reset();

@@ -48,10 +48,9 @@ Ext.define('AOS.view.Worklog', {
 							var selected = list.getSelection();
 							if(selected && selected.length > 0){
 								var before = list.getScrollable().getScroller().position.y;
-								Ext.getStore('Worklog').remove(selected[0]);
-								selected[0].erase();
-								Ext.getStore('Tasks').load();
-								Ext.getStore('Goals').load();
+								AOS.Helper.remove(selected[0],'Worklog');
+								AOS.Helper.refreshStore('Tasks');
+								AOS.Helper.refreshStore('Goals');
 								list.getScrollable().getScroller().scrollTo(0, before);
 								grandfather.disableActions();
 							}
@@ -59,12 +58,7 @@ Ext.define('AOS.view.Worklog', {
 					}
 				]
 			}
-		]/*,
-		listeners: {
-		    show: function() {
-		       Ext.getStore('Worklog').load();
-		    }
-		}*/
+		]
     },
 	enableActions: function(){
 		this.down('#work-remove').enable();

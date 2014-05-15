@@ -76,9 +76,9 @@ Ext.define('AOS.form.Work',{
 								},
 								success: function (response) {
 									Ext.Msg.alert('Success','Work Logged!');
-									Ext.getStore('Worklog').load();
-									Ext.getStore('Tasks').load();
-									Ext.getStore('Goals').load();
+									AOS.Helper.refreshStore('Worklog');
+									AOS.Helper.refreshStore('Tasks');
+									AOS.Helper.refreshStore('Goals');
 									AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 									form.reset();
 									me.disable();

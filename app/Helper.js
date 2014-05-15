@@ -93,6 +93,9 @@ Ext.define('AOS.Helper', {
 		},
 		logOut: function(){
 			var me = this;
+			Ext.getStore('Goals').removeAll();
+			Ext.getStore('Tasks').removeAll();
+			Ext.getStore('Worklog').removeAll();
 			Ext.Ajax.request({
 				url: 'logout',
 				method: 'post',
@@ -100,9 +103,20 @@ Ext.define('AOS.Helper', {
 					AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
 				},
 				failure: function (response) {
-					Ext.Msg.alert('Error '+response.status, 'Oops, something went wrong.', Ext.emptyFn);
+					Ext.Msg.alert('Error: '+response.status, 'Oops, something went wrong.', Ext.emptyFn);
 					AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
 				}
 			});
+		},
+		purgeStore: function(store){
+			Ext.getStore(store).removeAll();
+			Ext.getStore(store).load();
+		},
+		refreshStore: function(store){
+			Ext.getStore(store).load();
+		},
+		remove: function(what,where){
+			Ext.getStore(where).remove(what);
+			what.erase();
 		}
 	});
