@@ -5,8 +5,8 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 			modal:true,
 			hideOnMaskTap: true,
 			centered: true,
-			width: '60%',
-			height: '40%',
+			width: '70%',
+			height: '80%',
 			scrollable: true,
 			showAnimation:{
 				type: 'popIn',
@@ -24,7 +24,6 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 					items: [
 						{
 							itemId: 'goaldisplay-edit',
-							text: 'Edit',
 							iconCls: 'aos-icon-edit',
 							align: 'right',
 							handler: function(){
@@ -45,7 +44,7 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 		},
 		popUp: function(item){
 			this.goal_record = item;
-			var html = '<table>';
+			var html = '<table width=70%>';
 			//TODO field names need to be configurable as in API
 			html += '<tr><td class="aos-goal-field">Time Planned:</td>';
 			html += '<td class="aos-goal-data">'+this.goal_record.get('time_planned')+' hours</td></tr>';
@@ -60,6 +59,35 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 			html += '<tr><td class="aos-goal-field">Description:</td><td/></tr>';
 			html += '<tr><td class="aos-goal-data" colspan=2><p>'+this.goal_record.get('description')+'</p></td></tr>';
 			html += '</table>';
+
+			var goal_id = this.goal_record.get('id');
+			var tasks = [];
+			Ext.getStore('Tasks').each(function(rec) {
+				if (rec.get('goal_id') == goal_id) {
+					tasks.push(rec);
+				}
+			});
+			html += '<table width="90%" align="center">';
+			html += '<tr>';
+			html += '<td class="aos-small-header">Task</td>';
+			html += '<td class="aos-small-header">Initial</td>';
+			html += '<td class="aos-small-header">Current</td>';
+			html += '<td class="aos-small-header">Target</td>';
+			html += '<td class="aos-small-header">Progress</td>'
+			html += '</tr>';
+			var i;
+			for(i = 0; i < tasks.length; i++){
+				html += '<tr>';
+				html += '<td  width="100%" class="aos-small">'+tasks[i].get('name')+'</td>';
+				html += '<td  class="aos-small-report">'+tasks[i].get('initial')+'</td>';
+				html += '<td  class="aos-small-report">'+tasks[i].get('current')+'</td>';
+				html += '<td  class="aos-small-report">'+tasks[i].get('target')+'</td>';
+				html += '<td  class="aos-small-report">'+tasks[i].get('completion')+'%</td>';
+				html += '</tr>';
+			}
+			html += '</table>';
+			html += '<br/><br/>';
+			//Ext.getStore('Tasks').clearFilter();
 			this.setHtml(html);
 			this.down('#goaldisplay-titlebar').setTitle(this.goal_record.get('title'));
 			this.show();
