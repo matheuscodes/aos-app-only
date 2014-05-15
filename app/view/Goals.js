@@ -29,12 +29,13 @@ Ext.define('AOS.view.Goals', {
 				xtype: 'toolbar',
 				ui: 'neutral',
 				docked: 'bottom',
-				scrollable: null,
+				scrollable: 'horizontal',
 				layout: {pack:'center'},
 				items:[
 					{
 						disabled: true,
 						itemId: 'goal-details',
+						ui: 'small',
 						text: 'Details',
 						iconCls: 'aos-icon-details',
 						handler: function(){
@@ -51,6 +52,7 @@ Ext.define('AOS.view.Goals', {
 					{
 						disabled: true,
 						itemId: 'goal-remove',
+						ui: 'small',
 						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						handler: function(){
@@ -68,6 +70,7 @@ Ext.define('AOS.view.Goals', {
 					{
 						disabled: true,
 						itemId: 'goal-tasks',
+						ui: 'small',
 						text: 'New Task',
 						iconCls: 'aos-icon-tasks',
 						align: 'left',
@@ -82,6 +85,7 @@ Ext.define('AOS.view.Goals', {
 					},
 					{
 						itemId: 'new-goal',
+						ui: 'small',
 						text: 'New Goal',
 						iconCls: 'aos-icon-new',
 						handler: function(){

@@ -1,24 +1,91 @@
-/* Overwrite for Theme Variables */
-$base-color: #238C23 !default;
-$font-family: 'KingthingsTrypewriter' !default;
-$page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,150,1) 100%) !default;
+/**
+	Copyright (C) 2014  Matheus Borges Teixeira
+
+	This is a part of Arkanos Organizer Suite (AOS) app.
+	AOS is a web application for organizing personal goals.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as
+	published by the Free Software Foundation, either version 3 of the
+	License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+**/
 
 /**
- * The following two lines import the default Sencha Touch theme. 
- * If you are building a new theme, remove them and the add your own CSS on top of the base CSS
- * (which is already included in your app.json file).
+ * Sencha Default Overwrites
  */
+
+/* Overwrite for Theme Colors */
+$base-color: #238C23 !default;
+$page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,150,1) 100%) !default;
+
+/* Overwrite for Theme Font */
+@font-face {
+	font-family: 'KingthingsTrypewriter';
+	src: url('../fonts/KingthingsTrypewriter2.ttf');
+}
+$font-family: 'KingthingsTrypewriter' !default;
+
+
+/* Importing Sencha data */
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
+
+/* Overwrite for overal font size */
+html {
+	font-size:150%;
+}
+
+/* Overwrite for Icon Size */
+.x-tab .x-button-icon {
+	font-size: 1.3em;
+}
+
+/* Overwrite for Tab Size */
+.x-tab {
+	min-width: 1em;
+}
+
+/* Overwrite for Tab Label */
+.x-tabbar.x-docked-bottom .x-tab .x-button-label{
+    font-size: 0.5em;
+	padding: 0.4em;
+}
+
+/* Overwrite for Bottom Toolbar Label*/
+.x-toolbar.x-docked-bottom .x-button .x-button-label {
+	font-size: 0.5em;
+}
+
+/* Overwrite for Bottom Toolbar Icon*/
+.x-toolbar.x-docked-bottom .x-button .x-button-icon:before {
+	line-height: 0.75em;
+}
+
+/* Overwrite for Bottom Toolbar Icon*/
+.x-toolbar.x-docked-bottom {
+	min-height:2em;
+}
+
+/* Overwrite for Bottom Tab */
+.x-tabbar.x-docked-bottom {
+	height: 4em;
+}
+
+/**
+ * AOS Specific Icons
+ */
 
 @font-face {
 	font-family: 'PWSmallIcons';
 	src: url('../fonts/PWSmallIcons.ttf');
-}
-
-@font-face {
-        font-family: 'KingthingsTrypewriter';
-        src: url('../fonts/KingthingsTrypewriter2.ttf');
 }
 
 @include icon("aos-icon-calendar","(","PWSmallIcons");
@@ -43,48 +110,32 @@ $page-bg-color:linear-gradient(to bottom, rgba(255,255,255,1) 33%,rgba(150,150,1
 @include icon("aos-icon-productivity","\27","PWSmallIcons");
 
 
-html {
-	font-size:150%;
-}
-
-/* Overwrite for Icon Size */
-.x-tab .x-button-icon {
-    font-size: 1.3em;
-}
-
-/* Overwrite for Tab Label */
-.x-tabbar.x-docked-bottom .x-tab .x-button-label{
-    font-size: 0.8em;
-	padding: 0.4em;
-}
-
-/* Overwrite for Bottom Tab */
-.x-tabbar.x-docked-bottom {
-    height: 4.3em;
-}
+/**
+ * AOS Specific Styles
+ */
 
 .aos-title {
-	font-size: 120%;
+	font-size: 1em;
 	font-weight: bold;
 }
 
 .aos-date {
-	font-size: 70%;
+	font-size: 0.6em;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
 .aos-normal {
-	font-size: 100%;
+	font-size: 0.9em;
 }
 
 .aos-small {
-	font-size: 70%;
+	font-size: 0.5em;
 	font-style: italic;
 }
 
 .aos-goal-status {
-	font-size: 80%;
+	font-size: 0.5em;
 	text-align: center;
 	padding: 0 1em 0 0;
 }
@@ -92,7 +143,7 @@ html {
 .aos-goal-field {
 	font-weight: bold;
 	padding: 0.5em;
-	width:30%;
+	width: 30%;
 }
 
 .aos-goal-data {

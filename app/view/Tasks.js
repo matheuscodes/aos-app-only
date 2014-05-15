@@ -42,6 +42,7 @@ Ext.define('AOS.view.Tasks', {
 				items:[
 					{
 						itemId: 'task-edit',
+						ui: 'small',
 						text: 'Edit',
 						iconCls: 'aos-icon-details',
 						disabled: true,
@@ -57,6 +58,7 @@ Ext.define('AOS.view.Tasks', {
 					{
 						disabled: true,
 						itemId: 'task-remove',
+						ui: 'small',
 						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						disabled: true,
@@ -74,6 +76,7 @@ Ext.define('AOS.view.Tasks', {
 					},
 					{
 						itemId: 'task-worklog',
+						ui: 'small',
 						text: 'Log work',
 						iconCls: 'aos-icon-worklog',
 						disabled: true,

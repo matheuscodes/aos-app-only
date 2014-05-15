@@ -18,8 +18,9 @@ Ext.define('AOS.view.Worklog', {
 				itemId: 'list-display',
 		        itemTpl:	' <table width="100%">'+
 							'<tr><td class="aos-date" width="100%">{start}</td>'+
-							'<td class="aos-goal-status" rowspan="3"><b>Spent</b><br/>{time_spent} hours</td></tr>'+
+							'<td class="aos-goal-status" rowspan="4"><b>Spent</b><br/>{time_spent} hours</td></tr>'+
 							'<tr><td class="aos-normal" width="100%">{task_name}</td></tr>'+
+							'<tr><td class="aos-small" width="100%">{comment}</td></tr>'+
 							'<tr><td class="aos-small" width="100%">{goal_title}</td></tr>'+
 							'</table>',
 				listeners: {
@@ -37,23 +38,8 @@ Ext.define('AOS.view.Worklog', {
 				items:[
 					{
 						disabled: true,
-						itemId: 'work-details',
-						text: 'Details',
-						iconCls: 'aos-icon-details',
-						handler: function(){
-							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
-							if(selected && selected.length > 0){
-								if(!grandfather.overlay){
-									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.goals.GoalDisplay'));
-								}
-								grandfather.overlay.popUp(selected[0]);
-							}
-						}
-					},
-					{
-						disabled: true,
 						itemId: 'work-remove',
+						ui: 'small',
 						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						handler: function(){
@@ -78,11 +64,9 @@ Ext.define('AOS.view.Worklog', {
 		}*/
     },
 	enableActions: function(){
-		this.down('#work-details').enable();
 		this.down('#work-remove').enable();
 	},
 	disableActions: function(){
-		this.down('#work-details').disable();
 		this.down('#work-remove').disable();
 	}
 });

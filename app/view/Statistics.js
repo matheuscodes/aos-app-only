@@ -12,6 +12,7 @@ Ext.define('AOS.view.Statistics', {
 		'AOS.view.button.MainMenu'],
 	config: {
 		tabBarPosition: 'bottom',
+		scrollable: 'horizontal',
 		items: [
 			{
 				docked: 'top',
