@@ -92,9 +92,9 @@ Ext.define('AOS.view.Statistics', {
 				html += '<p><b>Expected Used Time:</b> '+stats['statistics']['expected_used_time']+' hours.</p>';
 				html += '<p><b>Surplus/Deficit:</b> '+stats['statistics']['surplus_time']+' hours.</p>';
 				html += '<p><b>Expected Completion:</b> '+stats['statistics']['expected_completion']+'%</p>';
-				
+
 				html += '<table style="text-align:center">';
-				
+
 				html += '<tr><td colspan="3"><b>Completion</b></td></tr>';
 				html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
 				html += '<tr>';
@@ -110,7 +110,7 @@ Ext.define('AOS.view.Statistics', {
 				html += '<td>'+stats['statistics']['dedication']['avg']+'%</td>';
 				html += '<td>'+stats['statistics']['dedication']['min']+'%</td>';
 				html += '</tr>';
-				
+
 				html += '<tr><td colspan="3"><br/><b>Productivity</b></td></tr>';
 				html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
 				html += '<tr>';
@@ -118,13 +118,14 @@ Ext.define('AOS.view.Statistics', {
 				html += '<td>'+stats['statistics']['productivity']['avg']+'</td>';
 				html += '<td>'+stats['statistics']['productivity']['min']+'</td>';
 				html += '</tr>';
-				
+
 				html += '</table>';
-				
+
 				me.down('#overview').setHtml(html);
+				me.down('#overview').setScrollable(true);
 			},
 			failure: function (response) {
-				//TODO alert
+				Ext.Msg.alert('Error','Statistics could not be read from the server.');
 			}
 		});
 	}
