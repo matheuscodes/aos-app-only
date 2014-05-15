@@ -6,6 +6,21 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 		animate: true,
 		xtype: 'chart',
 		store: {},
+		interactions:[
+			{
+				type: 'panzoom',
+				axes:{
+					'left':{
+						allowPan:false,
+						allowZoom: false
+					},
+					'bottom':{
+						allowPan:true,
+						allowZoom: false
+					}
+				}
+			}
+		],
 		axes: [
 			{
 				type: 'numeric',
@@ -20,6 +35,7 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 			{
 				type: 'category',
 				position: 'bottom',
+				visibleRange: [0.5, 1],
 				title: {
 					text: 'Month',
 					fontSize: 15
