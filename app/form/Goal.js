@@ -31,6 +31,7 @@ Ext.define('AOS.form.Goal',{
 							var me = this;
 							var form = this.parent.parent.parent;
 							var record = form.getRecord();
+							var backup_title, backup_time_planned, backup_description;
 							var option = {
 								success: function(response) {
 									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
@@ -43,19 +44,39 @@ Ext.define('AOS.form.Goal',{
 								failure: function(response) {
 									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
 									Ext.Msg.alert('Error','Oops, something went wrong!');
-									//console.log('why god, why...');
+									if(backup_title){
+										record.set('title',backup_title);
+									}
+									else{
+										record.set('title','');
+									}
+									if(backup_time_planned){
+										record.set('time_planned',backup_time_planned);
+									}
+									else{
+										record.set('time_planned','');
+									}
+									if(backup_description){
+										record.set('description',backup_description);
+									}
+									else{
+										record.set('description','');
+									}
 								}
 							}
 							if(record){
 								var values = form.getValues();
 								if(values.title){
+									backup_title = record.get('title');
 									record.set('title',values.title);
 								}
 								if(values.time_planned){
+									backup_time_planned = record.get('time_planned');
 									record.set('time_planned',values.time_planned);
 								}
 								if(values.description){
-									record.set('description',values.name);
+									backup_description = record.get('description');
+									record.set('description',values.description);
 								}
 								record.save(option);
 							}

@@ -42,6 +42,7 @@ Ext.define('AOS.form.Task',{
 							var me = this;
 							var form = this.parent.parent.parent;
 							var record = form.getRecord();
+							var backup_name, backup_initial, backup_target;
 							var option = {
 								success: function(response) {
 									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
@@ -54,17 +55,38 @@ Ext.define('AOS.form.Task',{
 								failure: function(response) {
 									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
 									Ext.Msg.alert('Error','Oops, something went wrong!');
+									if(backup_name){
+										record.set('name',backup_name);
+									}
+									else{
+										record.set('name','');
+									}
+									if(backup_initial){
+										record.set('initial',backup_initial);
+									}
+									else{
+										record.set('initial','');
+									}
+									if(backup_target){
+										record.set('target',backup_target);
+									}
+									else{
+										record.set('target','');
+									}
 								}
 							}
 							if(record){
 								var values = form.getValues();
 								if(values.name){
+									backup_name = record.get('name');
 									record.set('name',values.name);
 								}
 								if(values.initial){
+									backup_initial = record.get('initial');
 									record.set('initial',values.initial);
 								}
 								if(values.target){
+									backup_target = record.get('target');
 									record.set('target',values.target);
 								}
 								record.save(option);

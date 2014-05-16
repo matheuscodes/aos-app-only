@@ -116,7 +116,13 @@ Ext.define('AOS.Helper', {
 			Ext.getStore(store).load();
 		},
 		remove: function(what,where){
-			Ext.getStore(where).remove(what);
-			what.erase();
+			what.erase({
+				failure: function(){
+					Ext.Msg.alert('Error', 'There was a problem with the removal.');
+				},
+				success: function(){
+					Ext.getStore(where).remove(what);
+				}
+			});
 		}
 	});
