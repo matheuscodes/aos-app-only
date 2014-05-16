@@ -35,11 +35,15 @@ Ext.define('AOS.form.Goal',{
 								success: function(response) {
 									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
 									Ext.Msg.alert('Success','Goal Saved!');
-									me.disable();
+									me.disable();									
+									form.reset();
+									form.setRecord(null);
+									AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 								},
 								failure: function(response) {
 									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
 									Ext.Msg.alert('Error','Oops, something went wrong!');
+									//console.log('why god, why...');
 								}
 							}
 							if(record){
@@ -61,9 +65,6 @@ Ext.define('AOS.form.Goal',{
 								form.submit(option);
 								AOS.Helper.refreshStore('Goals');
 							}
-							AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
-							form.reset();
-							form.setRecord(null);
 						}
 					}
 				]

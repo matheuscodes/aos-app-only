@@ -47,6 +47,9 @@ Ext.define('AOS.form.Task',{
 									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
 									Ext.Msg.alert('Success','Task Saved!');
 									me.disable();
+									AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
+									form.reset();
+									form.setRecord(null);
 								},
 								failure: function(response) {
 									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
@@ -65,17 +68,14 @@ Ext.define('AOS.form.Task',{
 									record.set('target',values.target);
 								}
 								record.save(option);
-								AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 							}
 							else{
 								option.url = 'tasks';
-								option.method = 'POST';	
+								option.method = 'POST';
+								form.submit(option);
 								AOS.Helper.refreshStore('Tasks');
 								AOS.Helper.refreshStore('Goals');
-								AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 							}
-							form.reset();
-							form.setRecord(null);
 						}
 					}
 				]
