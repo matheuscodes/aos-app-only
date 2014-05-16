@@ -1,7 +1,7 @@
 Ext.define('AOS.view.statistics.ProductivityGraph', {
 	extend: 'Ext.chart.CartesianChart',
 	xtype: 'aos-productivity-graph',
-	requires: ['Ext.chart.series.Bar','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper'],
+	requires: ['Ext.chart.series.Bar','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper','Ext.chart.interactions.PanZoom'],
 	config: {
 		animate: true,
 		xtype: 'chart',

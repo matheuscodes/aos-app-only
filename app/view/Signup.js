@@ -109,7 +109,7 @@ Ext.define('AOS.view.Signup', {
 				{
 					xtype: 'button',
 					itemId: 'submitButton',
-					dock: 'bottom',
+					docked: 'bottom',
 					ui: 'action',
 					margin: '1%',
 					text: 'Submit',
