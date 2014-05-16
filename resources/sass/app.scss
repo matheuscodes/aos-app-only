@@ -108,7 +108,10 @@ html {
 @include icon("aos-icon-completion","\7a","PWSmallIcons");
 @include icon("aos-icon-dedication","\3b","PWSmallIcons");
 @include icon("aos-icon-productivity","\27","PWSmallIcons");
-
+@include icon("aos-icon-information","\6a","PWSmallIcons");
+@include icon("aos-icon-copyright","\2c","PWSmallIcons");
+@include icon("aos-icon-about","\6b","PWSmallIcons");
+@include icon("aos-icon-instructions","\25","PWSmallIcons");
 
 /**
  * AOS Specific Styles
@@ -163,4 +166,8 @@ html {
 	font-size: 0.8em;
 	padding: 0.5em;
 	width: 60%;
+}
+
+.aos-copyright {
+	text-align: center;
 }

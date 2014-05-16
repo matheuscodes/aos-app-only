@@ -153,6 +153,7 @@ Ext.define('AOS.form.Goal',{
 			}
 		],
 		defaults: {
+			labelWidth: '40%',
 			listeners: {
 				change: function(field, newVal, oldVal) {
 					this.parent.down('#save-button').enable();

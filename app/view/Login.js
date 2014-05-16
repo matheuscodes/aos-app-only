@@ -31,7 +31,18 @@ Ext.define('AOS.view.Login', {
 				{
 					xtype: 'titlebar',
 					title: 'Login',
-					docked: 'top'
+					docked: 'top',
+					items:[
+						{
+							xtype:'button',
+							ui: 'round',
+							iconCls: 'aos-icon-information',
+							align: 'right',
+							handler: function(){
+								AOS.Helper.switchTo('AOS.view.Information',{ type: 'slide', direction: 'left' });
+							}
+						}
+					]
 				},
 				{
 					xtype: 'image',

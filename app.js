@@ -29,7 +29,7 @@ Ext.application({
 	],
 
 	views: [
-		'Login','Forgot','Signup','Statistics','Goals','Tasks','Worklog'
+		'Login','Forgot','Signup','Statistics','Goals','Tasks','Worklog','Information'
 	],
 
 	stores: [
