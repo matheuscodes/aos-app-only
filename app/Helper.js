@@ -153,5 +153,12 @@ Ext.define('AOS.Helper', {
 		},
 		clearDataChanged: function(){
 			this.data_changed = false;
+		},
+		wrapInIcon: function(icon,what){
+			var result =	'<div class="x-tab" style="z-index: inherit;overflow: inherit;background-color: inherit;border: inherit;min-width: inherit;">'+
+							what+ '<span class="x-button-icon '+icon+'" '+
+							'style="top: inherit;right: inherit;bottom: inherit;left: 0.5em;text-align: inherit;position: inherit; font-size: inherit;">'+
+							'</span></div>';
+			return result
 		}
 	});

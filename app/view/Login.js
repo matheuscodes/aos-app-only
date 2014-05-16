@@ -118,6 +118,7 @@ Ext.define('AOS.view.Login', {
 					ui: 'small',
 					margin: '2%',
 					text: 'Forgot password?',
+					disabled: true,
 					handler: function () {
 						AOS.Helper.switchTo('AOS.view.Forgot',{ type: 'slide', direction: 'left' });
 					}
