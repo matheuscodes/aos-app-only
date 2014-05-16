@@ -65,6 +65,8 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 			},
 			success: function (response) {
 				var stats = Ext.JSON.decode(response.responseText);
+
+				/* Reason for the warning TODO: refactor*/
 				me.setStore(Ext.create('Ext.data.Store',{
 					fields: stats['fields'],
 					data: stats['productivities']
