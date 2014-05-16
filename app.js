@@ -18,6 +18,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Sencha Application
+ */
 Ext.application({
 	name: 'AOS',
 
@@ -51,14 +54,17 @@ Ext.application({
 		'1496x2048': 'resources/startup/1496x2048.png'
 	},
 
+	/**
+	 * Application launch.
+	 */
 	launch: function() {
-		// Destroy the #appLoadingIndicator element
+		/* Destroy the #appLoadingIndicator element */
 		Ext.fly('appLoadingIndicator').destroy();
 
-		// Initialize the main menu
+		/* Initialize the main menu */
 		Ext.Viewport.setMenu(this.buildMainMenu(),{side:'top',cover:true});
 
-		// Initialize the main view
+		/* Try to login and initialize the main view */
 		Ext.Ajax.request({
 			url: 'login',
 			method: 'POST',
@@ -79,7 +85,10 @@ Ext.application({
 		});
 		
 	},
-
+	
+	/**
+	 * Application update pop up.
+	 */
 	onUpdated: function() {
 		Ext.Msg.confirm(
 			"New AOS available",
@@ -92,6 +101,9 @@ Ext.application({
 		);
 	},
 
+	/**
+	 * Modularized function for building the top menu.
+	 */
 	buildMainMenu: function(){
 		var menu = Ext.create('Ext.Menu');
 		menu.add([
