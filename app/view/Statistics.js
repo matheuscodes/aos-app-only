@@ -73,9 +73,11 @@ Ext.define('AOS.view.Statistics', {
 			}
 		],
 		listeners: {
-		    show: function() {
-		       this.initialize();
-		    }
+			show: function() {
+				if(AOS.Helper.hasDataChanged()){
+					this.initialize();
+				}
+			}
 		}
 	},
 	initialize: function(){
@@ -85,42 +87,48 @@ Ext.define('AOS.view.Statistics', {
 			url: 'statistics',
 			method: 'GET',
 			success: function (response) {
-				var stats = Ext.JSON.decode(response.responseText);
+				var stats = Ext.JSON.decode(response.responseText,true);
 				var html = '';
-				html += '<p><b>Planned Time:</b> '+stats['statistics']['planned_time']+' hours.</p>';
-				html += '<p><b>Used Time:</b> '+stats['statistics']['used_time']+' hours.</p>';
-				html += '<p><b>Expected Used Time:</b> '+stats['statistics']['expected_used_time']+' hours.</p>';
-				html += '<p><b>Surplus/Deficit:</b> '+stats['statistics']['surplus_time']+' hours.</p>';
-				html += '<p><b>Expected Completion:</b> '+stats['statistics']['expected_completion']+'%</p>';
+				if(stats){
+					html += '<p><b>Planned Time:</b> '+stats['statistics']['planned_time']+' hours.</p>';
+					html += '<p><b>Used Time:</b> '+stats['statistics']['used_time']+' hours.</p>';
+					html += '<p><b>Expected Used Time:</b> '+stats['statistics']['expected_used_time']+' hours.</p>';
+					html += '<p><b>Surplus/Deficit:</b> '+stats['statistics']['surplus_time']+' hours.</p>';
+					html += '<p><b>Expected Completion:</b> '+stats['statistics']['expected_completion']+'%</p>';
 
-				html += '<table style="text-align:center">';
+					html += '<table style="text-align:center">';
 
-				html += '<tr><td colspan="3"><b>Completion</b></td></tr>';
-				html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
-				html += '<tr>';
-				html += '<td>'+stats['statistics']['completion']['max']+'%</td>';
-				html += '<td>'+stats['statistics']['completion']['avg']+'%</td>';
-				html += '<td>'+stats['statistics']['completion']['min']+'%</td>';
-				html += '</tr>';
+					html += '<tr><td colspan="3"><b>Completion</b></td></tr>';
+					html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
+					html += '<tr>';
+					html += '<td>'+stats['statistics']['completion']['max']+'%</td>';
+					html += '<td>'+stats['statistics']['completion']['avg']+'%</td>';
+					html += '<td>'+stats['statistics']['completion']['min']+'%</td>';
+					html += '</tr>';
 
-				html += '<tr><td colspan="3"><br/><b>Dedication</b></td></tr>';
-				html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
-				html += '<tr>';
-				html += '<td>'+stats['statistics']['dedication']['max']+'%</td>';
-				html += '<td>'+stats['statistics']['dedication']['avg']+'%</td>';
-				html += '<td>'+stats['statistics']['dedication']['min']+'%</td>';
-				html += '</tr>';
+					html += '<tr><td colspan="3"><br/><b>Dedication</b></td></tr>';
+					html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
+					html += '<tr>';
+					html += '<td>'+stats['statistics']['dedication']['max']+'%</td>';
+					html += '<td>'+stats['statistics']['dedication']['avg']+'%</td>';
+					html += '<td>'+stats['statistics']['dedication']['min']+'%</td>';
+					html += '</tr>';
 
-				html += '<tr><td colspan="3"><br/><b>Productivity</b></td></tr>';
-				html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
-				html += '<tr>';
-				html += '<td>'+stats['statistics']['productivity']['max']+'</td>';
-				html += '<td>'+stats['statistics']['productivity']['avg']+'</td>';
-				html += '<td>'+stats['statistics']['productivity']['min']+'</td>';
-				html += '</tr>';
+					html += '<tr><td colspan="3"><br/><b>Productivity</b></td></tr>';
+					html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
+					html += '<tr>';
+					html += '<td>'+stats['statistics']['productivity']['max']+'</td>';
+					html += '<td>'+stats['statistics']['productivity']['avg']+'</td>';
+					html += '<td>'+stats['statistics']['productivity']['min']+'</td>';
+					html += '</tr>';
 
-				html += '</table>';
+					html += '</table>';
 
+				}
+				else{
+					html += '<p style="text-align:center">There was a problem loading statistics.</p>';
+					Ext.Msg.alert('Error','Statistics could not be parsed.');
+				}
 				me.down('#overview').setHtml(html);
 				me.down('#overview').setScrollable(true);
 			},

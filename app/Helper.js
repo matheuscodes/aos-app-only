@@ -5,6 +5,7 @@ Ext.define('AOS.Helper', {
 		viewCache: [],
 		given_colors: {},
 		color_count: 0,
+		data_changed: false,
 		colors:[
 			'rgba(200,0,0',
 			'rgba(0,200,0',
@@ -109,10 +110,12 @@ Ext.define('AOS.Helper', {
 			});
 		},
 		purgeStore: function(store){
+			this.data_changed = true;
 			Ext.getStore(store).removeAll();
 			Ext.getStore(store).load();
 		},
 		refreshStore: function(store){
+			this.data_changed = true;
 			Ext.getStore(store).load();
 		},
 		remove: function(what,where){
@@ -124,5 +127,11 @@ Ext.define('AOS.Helper', {
 					Ext.getStore(where).remove(what);
 				}
 			});
+		},
+		hasDataChanged: function(){
+			return this.data_changed;
+		},
+		clearDataChanged: function(){
+			this.data_changed = false;
 		}
 	});

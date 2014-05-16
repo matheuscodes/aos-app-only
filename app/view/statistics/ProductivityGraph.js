@@ -45,6 +45,13 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 		series: [],
 		legend:{
 			position:'top'
+		},
+		listeners: {
+			show: function() {
+				if(AOS.Helper.hasDataChanged()){
+					this.initialize();
+				}
+			}
 		}
 	},
 	initialize: function(){ //Change back to constructor or modularize
