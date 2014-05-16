@@ -1,10 +1,8 @@
 Ext.define('AOS.view.Login', {
 		extend: 'Ext.Panel',
 		requires: [	'Ext.form.FieldSet',
-					'Ext.field.Password', 
-					'Ext.Label', 
-					'Ext.Img', 
-					'Ext.util.DelayedTask', 
+					'Ext.field.Password',
+					'Ext.Img',
 					'Ext.Ajax', 
 					'AOS.view.button.Logout'],
 		config: {
@@ -19,15 +17,6 @@ Ext.define('AOS.view.Login', {
 					xtype: 'image',
 					src: 'resources/images/AOSLogo.png',
 					style: 'width:100%; height:33%; margin:2%;'
-				},
-				{
-					xtype: 'label',
-					id: 'loginErrorMessage',
-					html: 'Login failed.',
-					style: 'width:100%; text-align:center; color:#D44;',
-					hidden: true,
-					hideAnimation: 'fadeOut',
-					showAnimation: 'fadeIn'
 				},
 				{	
 					xtype:'fieldset',
@@ -67,10 +56,9 @@ Ext.define('AOS.view.Login', {
 									hashed_password: hashed_password
 								},
 								success: function (response) {
-									me.down('#loginErrorMessage').setHtml('');
-									Ext.getStore('Worklog').load();
-									Ext.getStore('Tasks').load();
-									Ext.getStore('Goals').load();
+									AOS.Helper.purgeStore('Worklog');
+									AOS.Helper.purgeStore('Tasks');
+									AOS.Helper.purgeStore('Goals');
 									AOS.Helper.switchTo('AOS.view.Statistics',{ type: 'pop' });
 								},
 								failure: function (response) {

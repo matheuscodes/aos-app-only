@@ -57,16 +57,16 @@ Ext.application({
 
 		// Initialize the main menu
 		Ext.Viewport.setMenu(this.buildMainMenu(),{side:'top',cover:true});
-		//AOS.util.Proxy.process('feed.js');			
+
 		// Initialize the main view
 		Ext.Ajax.request({
 			url: 'login',
 			method: 'POST',
 			success: function (response) {
 				if(response.status == 200){
-					Ext.getStore('Worklog').load();
-					Ext.getStore('Tasks').load();
-					Ext.getStore('Goals').load();
+					AOS.Helper.purgeStore('Worklog');
+					AOS.Helper.purgeStore('Tasks');
+					AOS.Helper.purgeStore('Goals');
 					Ext.Viewport.add(Ext.create('AOS.view.Statistics'));
 				}
 				else{
@@ -82,8 +82,8 @@ Ext.application({
 
 	onUpdated: function() {
 		Ext.Msg.confirm(
-			"Application Update",
-			"This application has just successfully been updated to the latest version. Reload now?",
+			"New AOS available",
+			"AOS has just successfully been updated to the latest version. Reload now?",
 			function(buttonId) {
 				if (buttonId === 'yes') {
 					window.location.reload();
