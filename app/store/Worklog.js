@@ -18,16 +18,22 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Storage for Work entries.
+ */
 Ext.define("AOS.store.Worklog", {
-		extend: 'Ext.data.Store',
-		requires: ['AOS.model.Work','Ext.data.proxy.Ajax'],
-		alias: 'store.Worklog',
-		config: {
-		    sorters: {
-				property: 'start',
-				direction: 'DESC'
-			},
-			autoLoad: true,
-			model: 'AOS.model.Work'			
-		}
-	});
+	extend: 'Ext.data.Store',
+	requires: [
+		'AOS.model.Work',
+		'Ext.data.proxy.Ajax'
+	],
+	alias: 'store.Worklog',
+	config: {
+		sorters: {
+			property: 'start',
+			direction: 'DESC'
+		},
+		autoLoad: true,
+		model: 'AOS.model.Work'
+	}
+});
