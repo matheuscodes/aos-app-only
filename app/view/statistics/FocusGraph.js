@@ -76,7 +76,7 @@ Ext.define('AOS.view.statistics.FocusGraph', {
 					titles.push(stats['titles'][stats['fields'][i]]);
 					colors.push(AOS.Helper.getKeyColor(stats['fields'][i]))
 				}
-				var newseries = me.getSeries();
+				var newseries = [];
 				var newone = {
 					type: 'bar',
 					colors: colors,
@@ -94,6 +94,7 @@ Ext.define('AOS.view.statistics.FocusGraph', {
 				};
 				newseries.push(newone);
 				me.setSeries(newseries);
+				me.redraw();
 			},
 			failure: function (response) {
 				//TODO alert

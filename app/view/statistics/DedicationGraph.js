@@ -68,7 +68,7 @@ Ext.define('AOS.view.statistics.DedicationGraph', {
 					data: stats['dedications']
 				}))
 
-				var newseries = me.getSeries();
+				var newseries = [];
 				for(var i = 1; i < stats['fields'].length; i++){
 					var newone = {
 						type: 'line',
@@ -90,6 +90,7 @@ Ext.define('AOS.view.statistics.DedicationGraph', {
 					newseries.push(newone);
 				}
 				me.setSeries(newseries);
+				me.redraw();
 			},
 			failure: function (response) {
 				//TODO alert

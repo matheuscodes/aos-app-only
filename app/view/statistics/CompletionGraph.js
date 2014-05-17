@@ -68,7 +68,7 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 					data: stats['completions']
 				}))
 				
-				var newseries = me.getSeries();
+				var newseries = [];
 				for(var i = 1; i < stats['fields'].length; i++){
 					var newone = {
 						type: 'line',
@@ -90,6 +90,7 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 					newseries.push(newone);
 				}
 				me.setSeries(newseries);
+				me.redraw();
 			},
 			failure: function (response) {
 				//TODO alert
