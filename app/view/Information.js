@@ -18,6 +18,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * View for displaying instructions and disclaimers.
+ */
 Ext.define('AOS.view.Information', {
 	extend: 'Ext.tab.Panel',
 	requires: [
@@ -27,7 +30,8 @@ Ext.define('AOS.view.Information', {
 		'AOS.view.statistics.ProductivityGraph',
 		'AOS.view.statistics.FocusGraph',
 		'AOS.view.button.Logout',
-		'AOS.view.button.MainMenu'],
+		'AOS.view.button.MainMenu'
+	],
 	config: {
 		tabBarPosition: 'bottom',
 		scrollable: 'horizontal',
@@ -60,8 +64,9 @@ Ext.define('AOS.view.Information', {
 						'<p> Contact the Author via matheus.bt at gmail or via his <a href="https://github.com/matheuscodes/">GitHub</a>.'+
 						
 						'<h1>Important links</h1>'+
-						'<p><a href="https://github.com/matheuscodes/aos">Source Code</a></p>'+
+						'<p><a href="https://github.com/matheuscodes/aos">Complete Source Code</a></p>'+
 						'<p><a href="https://github.com/matheuscodes/aos/issues">Report issues</a></p>'+
+						'<p><a href="https://github.com/matheuscodes/aos-app-only">Source Code of the App</a></p>'+
 						
 						'<h1>Cookie Policy</h1>'+
 						'<p> Cookies are only used to store the authentication token.</p>'+
