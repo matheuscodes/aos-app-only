@@ -41,6 +41,7 @@ Ext.define('AOS.form.Task',{
 		if(goal_id > 0 && goal_title){
 			this.down('#goal-id').setValue(goal_id);
 			this.down('#goal-title').setValue(goal_title);
+			this.down('#save-button').disable();
 		}
 	},
 
