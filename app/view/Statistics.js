@@ -55,8 +55,6 @@ Ext.define('AOS.view.Statistics', {
 				iconCls: 'aos-icon-overview',
 				itemId: 'overview',
 				styleHtmlContent: true,
-				scrollable: true,
-
 				items: []
 			},
 			{
@@ -64,7 +62,11 @@ Ext.define('AOS.view.Statistics', {
 				iconCls: 'aos-icon-completion',
 				layout: 'fit',
 				items: [
-					{xtype:'aos-completion-graph'}
+					{
+						xtype:'aos-completion-graph',
+						itemId: 'completion'
+						
+					}
 				]
 			},
 			{
@@ -72,7 +74,11 @@ Ext.define('AOS.view.Statistics', {
 				iconCls: 'aos-icon-dedication',
 				layout: 'fit',
 				items: [
-					{xtype:'aos-dedication-graph'}
+					{
+						xtype:'aos-dedication-graph',
+						itemId: 'dedication'
+
+					}
 				]
 			},
 			{
@@ -80,7 +86,11 @@ Ext.define('AOS.view.Statistics', {
 				iconCls: 'aos-icon-productivity',
 				layout: 'fit',
 				items: [
-					{xtype:'aos-productivity-graph'}
+					{
+						xtype:'aos-productivity-graph',
+						itemId: 'productivity'
+
+					}
 				]
 			},
 			{
@@ -88,28 +98,38 @@ Ext.define('AOS.view.Statistics', {
 				iconCls: 'aos-icon-focus',
 				layout: 'fit',
 				items: [
-					{xtype:'aos-focus-graph'}
+					{
+						xtype:'aos-focus-graph',
+						itemId: 'focus'
+					}
 				]
 			}
 		],
 		listeners: {
 			show: function() {
 				if(AOS.Helper.hasDataChanged()){
-					this.initialize();
+					this.redoData();
+					this.down('#completion').fireEvent('updatedata');
+					this.down('#dedication').fireEvent('updatedata');
+					this.down('#productivity').fireEvent('updatedata');
+					this.down('#focus').fireEvent('updatedata');
+					AOS.Helper.clearDataChanged();
 				}
 			}
 		}
 	},
-	initialize: function(){
-		this.callParent(arguments);
+	redoData: function(){
+		//this.callParent(arguments);
 		var me = this;
+		me.down('#overview').setHtml('<p style="text-align:center">Statistics will be loaded.</p>');
 		Ext.Ajax.request({
 			url: 'statistics',
 			method: 'GET',
 			success: function (response) {
 				var stats = Ext.JSON.decode(response.responseText,true);
 				var html = '';
-				if(stats){
+				if(stats && stats['statistics']){
+					html = '';
 					html += '<p><b>Planned Time:</b> '+stats['statistics']['planned_time']+' hours.</p>';
 					html += '<p><b>Used Time:</b> '+stats['statistics']['used_time']+' hours.</p>';
 					html += '<p><b>Expected Used Time:</b> '+stats['statistics']['expected_used_time']+' hours.</p>';
@@ -145,8 +165,8 @@ Ext.define('AOS.view.Statistics', {
 					html += '</table>';
 
 				}
-				else{
-					html += '<p style="text-align:center">There was a problem loading statistics.</p>';
+				else if(!stats){
+					html = '<p style="text-align:center">There was a problem loading statistics.</p>';
 					Ext.Msg.alert('Error','Statistics could not be parsed.');
 				}
 				me.down('#overview').setHtml(html);

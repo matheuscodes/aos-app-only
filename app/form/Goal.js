@@ -59,6 +59,7 @@ Ext.define('AOS.form.Goal',{
 									me.disable();									
 									form.reset();
 									form.setRecord(null);
+									AOS.Helper.refreshStore('Goals');
 									AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 								},
 								failure: function(response) {
@@ -104,7 +105,6 @@ Ext.define('AOS.form.Goal',{
 								option.url = 'goals';
 								option.method = 'POST';								
 								form.submit(option);
-								AOS.Helper.refreshStore('Goals');
 							}
 						}
 					}

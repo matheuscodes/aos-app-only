@@ -73,14 +73,14 @@ Ext.application({
 					AOS.Helper.purgeStore('Worklog');
 					AOS.Helper.purgeStore('Tasks');
 					AOS.Helper.purgeStore('Goals');
-					Ext.Viewport.add(Ext.create('AOS.view.Statistics'));
+					AOS.Helper.switchTo('AOS.view.Statistics',{ type: 'pop' });
 				}
 				else{
-					Ext.Viewport.add(Ext.create('AOS.view.Login'));
+					AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
 				}
 			},
 			failure: function (response) {
-				Ext.Viewport.add(Ext.create('AOS.view.Login'));
+				AOS.Helper.switchTo('AOS.view.Login',{ type: 'pop' });
 			}
 		});
 		

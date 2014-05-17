@@ -67,15 +67,13 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 			position:'top'
 		},
 		listeners: {
-			show: function() {
-				if(AOS.Helper.hasDataChanged()){
-					this.initialize();
-				}
+			updatedata: function() {
+				this.redoData();
 			}
 		}
 	},
-	initialize: function(){ //Change back to constructor or modularize
-		this.callParent(arguments);
+	redoData: function(){ //Change back to constructor or modularize
+		//this.callParent(arguments);
 		var me = this;
 		Ext.Ajax.request({
 			url: 'statistics/productivity',

@@ -68,6 +68,8 @@ Ext.define('AOS.form.Task',{
 									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
 									Ext.Msg.alert('Success','Task Saved!');
 									me.disable();
+									AOS.Helper.refreshStore('Tasks');
+									AOS.Helper.refreshStore('Goals');
 									if(form.getRecord()){
 										AOS.Helper.switchTo('AOS.view.Tasks',{ type: 'slide', direction: 'right' });
 									}
@@ -120,8 +122,6 @@ Ext.define('AOS.form.Task',{
 								option.url = 'tasks';
 								option.method = 'POST';
 								form.submit(option);
-								AOS.Helper.refreshStore('Tasks');
-								AOS.Helper.refreshStore('Goals');
 							}
 						}
 					}
