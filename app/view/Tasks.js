@@ -18,28 +18,33 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * View for administrating Tasks.
+ */
 Ext.define('AOS.view.Tasks', {
-    extend: 'Ext.Container',
-    requires: [	'AOS.store.Tasks',
-				'AOS.model.Task',
-				'AOS.form.Task',
-				'AOS.form.Work',
-				'Ext.dataview.List',
-				'AOS.Helper',
-				'AOS.view.bar.TopToolbar'],
-    config: {
-        layout: 'fit',
-        items: [
+	extend: 'Ext.Container',
+	requires: [
+		'Ext.dataview.List',
+		'AOS.store.Tasks',
+		'AOS.model.Task',
+		'AOS.form.Task',
+		'AOS.form.Work',
+		'AOS.Helper',
+		'AOS.view.bar.TopToolbar'
+	],
+	config: {
+		layout: 'fit',
+		items: [
 			{
 				docked: 'top',
 				title: 'Tasks',
 				xtype:'aos-toolbar-toptoolbar'
 			},
 			{
-		        xtype: 'list',
-		        store: 'Tasks',
+				xtype: 'list',
+				store: 'Tasks',
 				itemId: 'list-display',
-		        itemTpl:	'<table width="100%"><tr>'+
+				itemTpl:	'<table width="100%"><tr>'+
 							'<td class="aos-title" width="100%">{name}</td>'+
 							'<td class="aos-goal-status"><b>Initial</b><br/>{initial}</td>'+
 							'<td class="aos-goal-status"><b>Current</b><br/>{current}</td>'+
@@ -52,7 +57,7 @@ Ext.define('AOS.view.Tasks', {
 						this.parent.enableActions();
 					}
 				}
-		    },
+			},
 			{
 				xtype: 'toolbar',
 				ui: 'neutral',
@@ -116,19 +121,26 @@ Ext.define('AOS.view.Tasks', {
 		],
 		listeners: {
 			show: function() {
-				//Ext.getStore('Tasks').load();
 				var list = this.down('#list-display');
 				if(list){
 					AOS.Helper.moveToSelection(list);
 				}
 			}
 		}
-    },
+	},
+
+	/**
+	 * Enables all buttons related to selection.
+	 */
 	enableActions: function(){
 		this.down('#task-edit').enable();
 		this.down('#task-remove').enable();
 		this.down('#task-worklog').enable();
 	},
+
+	/**
+	 * Disables all buttons related to selection.
+	 */
 	disableActions: function(){
 		this.down('#task-edit').disable();
 		this.down('#task-remove').disable();
