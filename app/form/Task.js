@@ -18,15 +18,32 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Form to create Tasks.
+ */
 Ext.define('AOS.form.Task',{
 	extend: 'Ext.form.Panel',
-	requires: ['Ext.field.Text','Ext.field.Hidden','Ext.Button','Ext.Toolbar','AOS.Helper'],
+	requires: [
+		'Ext.field.Text',
+		'Ext.field.Hidden',
+		'Ext.Button',
+		'Ext.Toolbar',
+		'AOS.Helper'
+	],
+
+	/**
+	 * Sets up reference information for the Goal the task belongs to.
+	 *
+	 * @param {Number} Goal ID of the Task's goal.
+	 * @param {String} Goal Title for UI reference only.
+	 */
 	setGoal: function(goal_id,goal_title){
 		if(goal_id > 0 && goal_title){
 			this.down('#goal-id').setValue(goal_id);
 			this.down('#goal-title').setValue(goal_title);
 		}
 	},
+
 	config:{
 		items: [
 			{
@@ -65,7 +82,6 @@ Ext.define('AOS.form.Task',{
 							var backup_name, backup_initial, backup_target;
 							var option = {
 								success: function(response) {
-									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
 									Ext.Msg.alert('Success','Task Saved!');
 									me.disable();
 									AOS.Helper.refreshStore('Tasks');
@@ -80,7 +96,6 @@ Ext.define('AOS.form.Task',{
 									form.setRecord(null);
 								},
 								failure: function(response) {
-									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
 									Ext.Msg.alert('Error','Oops, something went wrong!');
 									if(backup_name){
 										record.set('name',backup_name);
@@ -102,8 +117,22 @@ Ext.define('AOS.form.Task',{
 									}
 								}
 							}
+
+							var values = form.getValues();
+							if(!values.name){
+								Ext.Msg.alert('Wrong Input','Name is mandatory');
+								return;
+							}
+							if(!values.initial || isNaN(values.initial)){
+								Ext.Msg.alert('Wrong Input','Initial value needs to be a number');
+								return;
+							}
+							if(!values.target || isNaN(values.target)){
+								Ext.Msg.alert('Wrong Input','Target value needs to be a number');
+								return;
+							}
+
 							if(record){
-								var values = form.getValues();
 								if(values.name){
 									backup_name = record.get('name');
 									record.set('name',values.name);
@@ -143,6 +172,7 @@ Ext.define('AOS.form.Task',{
 				itemId: 'goal-title',
 				name: 'goal_title',
 				label: 'Goal Name',
+				disabled: true,
 				readOnly:true
 			},
 			{
@@ -161,6 +191,7 @@ Ext.define('AOS.form.Task',{
 				xtype: 'textfield',
 				name: 'current',
 				label: 'Current',
+				disabled: true,
 				readOnly: true
 			},
 			{
@@ -173,6 +204,7 @@ Ext.define('AOS.form.Task',{
 				xtype: 'textfield',
 				name: 'total_time_spent',
 				label: 'Total Time Spent',
+				disabled: true,
 				readOnly: true
 			}
 		],
