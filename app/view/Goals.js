@@ -135,6 +135,6 @@ Ext.define('AOS.view.Goals', {
 	disableActions: function(){
 		this.down('#goal-details').disable();
 		this.down('#goal-remove').disable();
-		this.down('#goal-tasks').enable();
+		this.down('#goal-tasks').disable();
 	}
 });
