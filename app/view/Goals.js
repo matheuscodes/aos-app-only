@@ -18,33 +18,43 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * View for administrating Goals.
+ */
 Ext.define('AOS.view.Goals', {
-    extend: 'Ext.Container',
-    requires: [	'AOS.store.Goals',
-				'AOS.model.Goal',
-				'Ext.dataview.List',
-				'AOS.view.bar.TopToolbar',
-				'AOS.view.overlay.GoalOverlay',
-				'AOS.form.Task'],
-    config: {
-        layout: 'fit',
-        items: [
+	extend: 'Ext.Container',
+	requires: [
+		'Ext.dataview.List',
+		'AOS.store.Goals',
+		'AOS.model.Goal',
+		'AOS.view.bar.TopToolbar',
+		'AOS.view.overlay.GoalOverlay',
+		'AOS.form.Task'
+	],
+	config: {
+		layout: 'fit',
+		items: [
 			{
 				docked: 'top',
 				title: 'Goals',
 				xtype:'aos-toolbar-toptoolbar'
 			},
 			{
-		        xtype: 'list',
-		        store: 'Goals',
+				xtype: 'list',
+				store: 'Goals',
 				itemId: 'list-display',
-		        itemTpl: ' <table width="100%"><tr><td class="aos-title" width="100%">{title}</td><td class="aos-goal-status"><b>Completed</b><br/>{completion}%</td><td class="aos-goal-status"><b>Spent</b><br/>{total_time_spent} hours</td><td class="aos-goal-status"><b>Dedication</b><br/>{dedication}%</td></tr></table>',
+				itemTpl:	'<table width="100%"><tr>'+
+							'<td class="aos-title" width="100%">{title}</td>'+
+							'<td class="aos-goal-status"><b>Completed</b><br/>{completion}%</td>'+
+							'<td class="aos-goal-status"><b>Spent</b><br/>{total_time_spent} hours</td>'+
+							'<td class="aos-goal-status"><b>Dedication</b><br/>{dedication}%</td>'+
+							'</tr></table>',
 				listeners: {
 					select: function() {
 						this.parent.enableActions();
 					}
 				}
-		    },
+			},
 			{
 				xtype: 'toolbar',
 				ui: 'neutral',
@@ -119,19 +129,26 @@ Ext.define('AOS.view.Goals', {
 		],
 		listeners: {
 			show: function() {
-				//Ext.getStore('Goals').load();
 				var list = this.down('#list-display');
 				if(list){
 					AOS.Helper.moveToSelection(list);
 				}
 			}
 		}
-    },
+	},
+
+	/**
+	 * Enables all buttons related to selection.
+	 */
 	enableActions: function(){
 		this.down('#goal-details').enable();
 		this.down('#goal-remove').enable();
 		this.down('#goal-tasks').enable();
 	},
+
+	/**
+	 * Disables all buttons related to selection.
+	 */
 	disableActions: function(){
 		this.down('#goal-details').disable();
 		this.down('#goal-remove').disable();
