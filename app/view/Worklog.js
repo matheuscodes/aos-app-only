@@ -18,25 +18,30 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * View for administrating Work entries.
+ */
 Ext.define('AOS.view.Worklog', {
-    extend: 'Ext.Container',
-    requires: [	'AOS.store.Worklog',
-				'AOS.model.Work',
-				'Ext.dataview.List',
-				'AOS.view.bar.TopToolbar'],
-    config: {
-        layout: 'fit',
-        items: [
+	extend: 'Ext.Container',
+	requires: [
+		'Ext.dataview.List',
+		'AOS.store.Worklog',
+		'AOS.model.Work',
+		'AOS.view.bar.TopToolbar'
+	],
+	config: {
+		layout: 'fit',
+		items: [
 			{
 				docked: 'top',
 				title: 'Worklog',
 				xtype:'aos-toolbar-toptoolbar'
 			},
 			{
-		        xtype: 'list',
-		        store: 'Worklog',
+				xtype: 'list',
+				store: 'Worklog',
 				itemId: 'list-display',
-		        itemTpl:	' <table width="100%">'+
+				itemTpl:	' <table width="100%">'+
 							'<tr><td class="aos-date" width="100%">{start}</td>'+
 							'<td class="aos-goal-status" rowspan="4"><b>Spent</b><br/>{time_spent} hours</td></tr>'+
 							'<tr><td class="aos-normal" width="100%">{task_name}</td></tr>'+
@@ -48,7 +53,7 @@ Ext.define('AOS.view.Worklog', {
 						this.parent.enableActions();
 					}
 				}
-		    },
+			},
 			{
 				xtype: 'toolbar',
 				ui: 'neutral',
@@ -79,10 +84,18 @@ Ext.define('AOS.view.Worklog', {
 				]
 			}
 		]
-    },
+	},
+
+	/**
+	 * Enables removing button.
+	 */
 	enableActions: function(){
 		this.down('#work-remove').enable();
 	},
+
+	/**
+	 * Disables removing button.
+	 */
 	disableActions: function(){
 		this.down('#work-remove').disable();
 	}
