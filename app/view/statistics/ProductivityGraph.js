@@ -18,10 +18,22 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Graph for displaying productivity over time.
+ */
 Ext.define('AOS.view.statistics.ProductivityGraph', {
 	extend: 'Ext.chart.CartesianChart',
 	xtype: 'aos-productivity-graph',
-	requires: ['Ext.chart.series.Bar','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper','Ext.chart.interactions.PanZoom'],
+	requires: [
+		'Ext.chart.series.Bar',
+		'Ext.chart.interactions.PanZoom',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category',
+		'Ext.data.Store',
+		'Ext.Ajax',
+		'Ext.JSON',
+		'AOS.Helper'
+	],
 	config: {
 		animate: true,
 		xtype: 'chart',
@@ -112,7 +124,7 @@ Ext.define('AOS.view.statistics.ProductivityGraph', {
 				me.setSeries(newseries);
 			},
 			failure: function (response) {
-				//TODO alert
+				Ext.Msg.alert('Graph not loaded','Productivity graph could not be loaded.');
 			}
 		});
 	}

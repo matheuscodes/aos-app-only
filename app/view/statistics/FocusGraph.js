@@ -18,10 +18,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Graph for displaying focus over time.
+ */
 Ext.define('AOS.view.statistics.FocusGraph', {
 	extend: 'Ext.chart.CartesianChart',
 	xtype: 'aos-focus-graph',
-	requires: ['Ext.chart.series.Bar','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper'],
+	requires: [
+		'Ext.chart.series.Bar',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category',
+		'Ext.data.Store',
+		'Ext.Ajax',
+		'Ext.JSON',
+		'AOS.Helper'
+	],
 	config: {
 		animate: true,
 		store: {},
@@ -91,7 +102,7 @@ Ext.define('AOS.view.statistics.FocusGraph', {
 				me.setSeries(newseries);
 			},
 			failure: function (response) {
-				//TODO alert
+				Ext.Msg.alert('Graph not loaded','Focus graph could not be loaded.');
 			}
 		});
 	}

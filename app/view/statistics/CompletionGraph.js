@@ -18,10 +18,21 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Graph for displaying completion over time.
+ */
 Ext.define('AOS.view.statistics.CompletionGraph', {
 	extend: 'Ext.chart.CartesianChart',
 	xtype: 'aos-completion-graph',
-	requires: ['Ext.chart.series.Line','Ext.Ajax','Ext.JSON','Ext.chart.axis.Numeric','Ext.chart.axis.Category','Ext.data.Store','AOS.Helper'],
+	requires: [
+		'Ext.chart.series.Line',
+		'Ext.chart.axis.Numeric',
+		'Ext.chart.axis.Category',
+		'Ext.data.Store',
+		'Ext.Ajax',
+		'Ext.JSON',
+		'AOS.Helper'
+	],
 	config: {
 		animate: true,
 		store: {},
@@ -87,7 +98,7 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 				me.setSeries(newseries);
 			},
 			failure: function (response) {
-				//TODO alert
+				Ext.Msg.alert('Graph not loaded','Completion graph could not be loaded.');
 			}
 		});
 	}
