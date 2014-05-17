@@ -18,17 +18,20 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * View for visualizing statistics
+ */
 Ext.define('AOS.view.Statistics', {
 	extend: 'Ext.tab.Panel',
 	requires: [
 		'Ext.TitleBar',
-		'Ext.Video',
 		'AOS.view.statistics.CompletionGraph',
 		'AOS.view.statistics.DedicationGraph',
 		'AOS.view.statistics.ProductivityGraph',
 		'AOS.view.statistics.FocusGraph',
 		'AOS.view.button.Logout',
-		'AOS.view.button.MainMenu'],
+		'AOS.view.button.MainMenu'
+	],
 	config: {
 		tabBarPosition: 'bottom',
 		scrollable: 'horizontal',
@@ -76,7 +79,6 @@ Ext.define('AOS.view.Statistics', {
 					{
 						xtype:'aos-dedication-graph',
 						itemId: 'dedication'
-
 					}
 				]
 			},
@@ -88,7 +90,6 @@ Ext.define('AOS.view.Statistics', {
 					{
 						xtype:'aos-productivity-graph',
 						itemId: 'productivity'
-
 					}
 				]
 			},
@@ -108,25 +109,32 @@ Ext.define('AOS.view.Statistics', {
 			show: function() {
 				if(AOS.Helper.hasDataChanged()){
 					this.redoData();
+
 					completion = this.down('#completion').parent;
 					dedication = this.down('#dedication').parent;
 					productivity = this.down('#productivity').parent;
 					focus = this.down('#focus').parent;
+
 					completion.removeAll(true,true);
 					dedication.removeAll(true,true);
 					productivity.removeAll(true,true);
 					focus.removeAll(true,true);
+
 					completion.add(Ext.create('AOS.view.statistics.CompletionGraph',{itemId:'completion'}));
 					dedication.add(Ext.create('AOS.view.statistics.DedicationGraph',{itemId:'dedication'}));
 					productivity.add(Ext.create('AOS.view.statistics.ProductivityGraph',{itemId:'productivity'}));
 					focus.add(Ext.create('AOS.view.statistics.FocusGraph',{itemId:'focus'}));
+
 					AOS.Helper.clearDataChanged();
 				}
 			}
 		}
 	},
+
+	/**
+	 * Downloads and writes the HTML statistical report.
+	 */
 	redoData: function(){
-		//this.callParent(arguments);
 		var me = this;
 		me.down('#overview').setHtml('<p style="text-align:center">Statistics will be loaded.</p>');
 		Ext.Ajax.request({
