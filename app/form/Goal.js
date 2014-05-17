@@ -92,8 +92,22 @@ Ext.define('AOS.form.Goal',{
 									}
 								}
 							}
+
+							var values = form.getValues();
+							if(!values.title){
+								Ext.Msg.alert('Wrong Input','Title is mandatory');
+								return;
+							}
+							if(!values.time_planned || isNaN(values.time_planned)){
+								Ext.Msg.alert('Wrong Input','Time needs to be a number');
+								return;
+							}
+							else if(values.time_planned < 0){
+								Ext.Msg.alert('Wrong Input','Time needs to be positive');
+								return;
+							}
+
 							if(record){
-								var values = form.getValues();
 								if(values.title){
 									backup_title = record.get('title');
 									record.set('title',values.title);
@@ -132,6 +146,7 @@ Ext.define('AOS.form.Goal',{
 				xtype: 'textfield',
 				name: 'completion',
 				label: 'Completion',
+				disabled: true,
 				readOnly: true
 			},
 			{
@@ -144,12 +159,14 @@ Ext.define('AOS.form.Goal',{
 				xtype: 'textfield',
 				name: 'total_time_spent',
 				label: 'Total Time Spent (hours)',
+				disabled: true,
 				readOnly: true
 			},
 			{
 				xtype: 'textfield',
 				name: 'dedication',
 				label: 'Dedication',
+				disabled: true,
 				readOnly: true
 			},
 			{
