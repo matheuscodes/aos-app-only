@@ -18,14 +18,17 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Button to trigger log out.
+ */
 Ext.define('AOS.view.button.Logout', {
-		extend: 'Ext.Button',
-		xtype: 'aos-button-logout',
-		requires: ['Ext.Ajax'],
-		config: {
-			ui: 'round',
-			handler: function(){
-				AOS.Helper.logOut();
-			}
+	extend: 'Ext.Button',
+	xtype: 'aos-button-logout',
+	requires: ['Ext.Ajax'],
+	config: {
+		ui: 'round',
+		handler: function(){
+			AOS.Helper.logOut();
 		}
-	});
+	}
+});

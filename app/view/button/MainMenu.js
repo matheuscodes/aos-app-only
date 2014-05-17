@@ -18,14 +18,17 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Button to trigger main menu.
+ */
 Ext.define('AOS.view.button.MainMenu', {
-		extend: 'Ext.Button',
-		xtype: 'aos-button-mainmenu',
-		requires: ['Ext.Ajax'],
-		config: {
-			ui: 'round',
-			handler: function() {
-				Ext.Viewport.toggleMenu('top');
-			}
+	extend: 'Ext.Button',
+	xtype: 'aos-button-mainmenu',
+	requires: ['Ext.Ajax'],
+	config: {
+		ui: 'round',
+		handler: function() {
+			Ext.Viewport.toggleMenu('top');
 		}
-	});
+	}
+});
