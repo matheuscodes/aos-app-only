@@ -18,25 +18,45 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Form to create Work entries.
+ */
 Ext.define('AOS.form.Work',{
 	extend: 'Ext.form.Panel',
 	requires: [
-				'Ext.field.Text',
-				'Ext.field.Hidden',
-				'Ext.field.DatePicker',
-				'Ext.field.TextArea',
-				'Ext.field.Number',
-				'Ext.Button',
-				'Ext.TitleBar',
-				'Ext.Ajax',
-				'AOS.Helper'
+		'Ext.field.Text',
+		'Ext.field.Hidden',
+		'Ext.field.DatePicker',
+		'Ext.field.TextArea',
+		'Ext.field.Number',
+		'Ext.field.Spinner',
+		'Ext.Button',
+		'Ext.TitleBar',
+		'Ext.Ajax',
+		'AOS.Helper'
 	],
+
+	/**
+	 * Sets up reference information for the Task the work entry belongs to.
+	 *
+	 * @param {Number} Task ID of the Work entry's goal.
+	 * @param {String} Task Name for UI reference only.
+	 */
 	setTask: function(task_id,task_name){
 		if(task_id > 0 && task_name){
 			this.down('#work-task-id').setValue(task_id);
 			this.down('#work-task-name').setValue(task_name);
+			this.down('#save-button').disable();
 		}
 	},
+
+	/**
+	 * @private
+	 * Simple helper function for padding numbers.
+	 * 
+	 * @param {Number} Value to be add 0 or not.
+	 * @return {String} Value corrected.
+	 */
 	pad: function(n) {
 		if(n < 10){
 			return '0'+ n
@@ -45,6 +65,7 @@ Ext.define('AOS.form.Work',{
 			return n;
 		}
 	},
+
 	config:{
 		items: [
 			{
@@ -122,6 +143,7 @@ Ext.define('AOS.form.Work',{
 				itemId: 'work-task-name',
 				name: 'task_name',
 				label: 'Task',
+				disabled: true,
 				readOnly: true
 			},
 			{
@@ -172,7 +194,9 @@ Ext.define('AOS.form.Work',{
 				itemId: 'work-time',
 				name: 'time_spent',
 				label: 'Spent Time (minutes)',
-				value: 30
+				stepValue: 15,
+				value: 30,
+				minValue: 0
 			},
 			{
 				xtype: 'textareafield',
@@ -185,8 +209,7 @@ Ext.define('AOS.form.Work',{
 		defaults: {
 			listeners: {
 				change: function(field, newVal, oldVal) {
-					if(oldVal){
-						//TODO fix the issue for item without parent here.
+					if(this.parent){
 						this.parent.down('#save-button').enable();
 					}
 				}
