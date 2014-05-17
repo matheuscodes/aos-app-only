@@ -26,6 +26,7 @@ Ext.define('AOS.form.Task',{
 	requires: [
 		'Ext.field.Text',
 		'Ext.field.Hidden',
+		'Ext.field.Number',
 		'Ext.Button',
 		'Ext.Toolbar',
 		'AOS.Helper'
@@ -183,7 +184,7 @@ Ext.define('AOS.form.Task',{
 				required: true
 			},
 			{
-				xtype: 'textfield',
+				xtype: 'numberfield',
 				name: 'initial',
 				label: 'Initial',
 				required: true
@@ -196,7 +197,7 @@ Ext.define('AOS.form.Task',{
 				readOnly: true
 			},
 			{
-				xtype: 'textfield',
+				xtype: 'numberfield',
 				name: 'target',
 				label: 'Target',
 				required: true

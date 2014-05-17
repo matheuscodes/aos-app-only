@@ -26,6 +26,7 @@ Ext.define('AOS.form.Goal',{
 	requires: [
 		'Ext.field.Text',
 		'Ext.field.Hidden',
+		'Ext.field.Number',
 		'Ext.Button',
 		'Ext.Toolbar',
 		'AOS.Helper'
@@ -150,7 +151,7 @@ Ext.define('AOS.form.Goal',{
 				readOnly: true
 			},
 			{
-				xtype: 'textfield',
+				xtype: 'numberfield',
 				required: true,
 				name: 'time_planned',
 				label: 'Total Time Planned (hours)'
