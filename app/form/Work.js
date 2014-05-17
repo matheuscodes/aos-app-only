@@ -207,6 +207,7 @@ Ext.define('AOS.form.Work',{
 			}
 		],
 		defaults: {
+			labelWidth: '40%',
 			listeners: {
 				change: function(field, newVal, oldVal) {
 					if(this.parent){

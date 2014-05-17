@@ -211,6 +211,7 @@ Ext.define('AOS.form.Task',{
 			}
 		],
 		defaults: {
+			labelWidth: '40%',
 			listeners: {
 				change: function(field, newVal, oldVal) {
 					this.parent.down('#save-button').enable();
