@@ -59,7 +59,7 @@ Ext.define('AOS.view.Information', {
 				scrollable: true,
 				html:	'<div class="aos-about">'+
 						'<h1>About</h1>'+
-						'<p> AOS - Arkanos Organizer Suite<br/>Matheus Borges Teixeira</p>'+
+						'<p> AOSv0.2.1 - Arkanos Organizer Suite<br/>Matheus Borges Teixeira</p>'+
 						'<p> This is a tool for managing personal goals, with possibility of breaking down into tasks and logging work, allowing statistical analysis on performance. It was created by Matheus Borges Teixeira. This application is offered free of charge under the GNU Affero General Public License. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.</p>'+
 						'<p> Contact the Author via matheus.bt at gmail or via his <a href="https://github.com/matheuscodes/">GitHub</a>.'+
 						
