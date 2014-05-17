@@ -227,7 +227,7 @@ Ext.define('AOS.Helper', {
 		what.erase({
 			failure: function(){
 				Ext.Msg.alert('Error', 'There was a problem with the removal.');
-			},, with additional things
+			},
 			success: function(){
 				me.data_changed = true;
 				Ext.getStore(where).remove(what);

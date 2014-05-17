@@ -18,9 +18,18 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * Form to create Goals.
+ */
 Ext.define('AOS.form.Goal',{
 	extend: 'Ext.form.Panel',
-	requires: ['Ext.field.Text','Ext.field.Hidden','Ext.Button','Ext.Toolbar','AOS.Helper'],
+	requires: [
+		'Ext.field.Text',
+		'Ext.field.Hidden',
+		'Ext.Button',
+		'Ext.Toolbar',
+		'AOS.Helper'
+	],
 	config:{
 		items: [
 			{
@@ -54,16 +63,14 @@ Ext.define('AOS.form.Goal',{
 							var backup_title, backup_time_planned, backup_description;
 							var option = {
 								success: function(response) {
-									//Ext.Msg.alert('Success','Form submitted successfully!',Ext.emptyFn);
 									Ext.Msg.alert('Success','Goal Saved!');
-									me.disable();									
+									me.disable();
 									form.reset();
 									form.setRecord(null);
 									AOS.Helper.refreshStore('Goals');
 									AOS.Helper.switchTo('AOS.view.Goals',{ type: 'slide', direction: 'right' });
 								},
 								failure: function(response) {
-									//Ext.Msg.alert('Error '+response.status, response.statusText, Ext.emptyFn);
 									Ext.Msg.alert('Error','Oops, something went wrong!');
 									if(backup_title){
 										record.set('title',backup_title);
@@ -103,7 +110,7 @@ Ext.define('AOS.form.Goal',{
 							}
 							else{
 								option.url = 'goals';
-								option.method = 'POST';								
+								option.method = 'POST';
 								form.submit(option);
 							}
 						}
