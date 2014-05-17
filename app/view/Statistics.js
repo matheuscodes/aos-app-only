@@ -65,7 +65,6 @@ Ext.define('AOS.view.Statistics', {
 					{
 						xtype:'aos-completion-graph',
 						itemId: 'completion'
-						
 					}
 				]
 			},
@@ -109,10 +108,18 @@ Ext.define('AOS.view.Statistics', {
 			show: function() {
 				if(AOS.Helper.hasDataChanged()){
 					this.redoData();
-					this.down('#completion').fireEvent('updatedata');
-					this.down('#dedication').fireEvent('updatedata');
-					this.down('#productivity').fireEvent('updatedata');
-					this.down('#focus').fireEvent('updatedata');
+					completion = this.down('#completion').parent;
+					dedication = this.down('#dedication').parent;
+					productivity = this.down('#productivity').parent;
+					focus = this.down('#focus').parent;
+					completion.removeAll(true,true);
+					dedication.removeAll(true,true);
+					productivity.removeAll(true,true);
+					focus.removeAll(true,true);
+					completion.add(Ext.create('AOS.view.statistics.CompletionGraph',{itemId:'completion'}));
+					dedication.add(Ext.create('AOS.view.statistics.DedicationGraph',{itemId:'dedication'}));
+					productivity.add(Ext.create('AOS.view.statistics.ProductivityGraph',{itemId:'productivity'}));
+					focus.add(Ext.create('AOS.view.statistics.FocusGraph',{itemId:'focus'}));
 					AOS.Helper.clearDataChanged();
 				}
 			}

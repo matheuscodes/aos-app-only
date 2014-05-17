@@ -43,15 +43,10 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 		series: [],
 		legend:{
 			position:'top'
-		},
-		listeners: {
-			updatedata: function() {
-				this.redoData();
-			}
 		}
 	},
-	redoData: function(){ //Change back to constructor or modularize
-		//this.callParent(arguments);
+	initialize: function(){
+		this.callParent(arguments);
 		var me = this;
 		Ext.Ajax.request({
 			url: 'statistics/completion',
@@ -90,7 +85,6 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 					newseries.push(newone);
 				}
 				me.setSeries(newseries);
-				me.redraw();
 			},
 			failure: function (response) {
 				//TODO alert
