@@ -18,6 +18,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+/**
+ * First view of the system.
+ */
 Ext.define('AOS.view.Login', {
 	extend: 'Ext.Panel',
 	requires: [
