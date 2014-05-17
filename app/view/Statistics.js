@@ -30,7 +30,8 @@ Ext.define('AOS.view.Statistics', {
 		'AOS.view.statistics.ProductivityGraph',
 		'AOS.view.statistics.FocusGraph',
 		'AOS.view.button.Logout',
-		'AOS.view.button.MainMenu'
+		'AOS.view.button.MainMenu',
+		'AOS.Helper'
 	],
 	config: {
 		tabBarPosition: 'bottom',

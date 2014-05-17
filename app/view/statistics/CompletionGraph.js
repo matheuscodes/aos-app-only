@@ -25,10 +25,12 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 	extend: 'Ext.chart.CartesianChart',
 	xtype: 'aos-completion-graph',
 	requires: [
+		'Ext.draw.sprite.Path',
 		'Ext.chart.series.Line',
 		'Ext.chart.axis.Numeric',
 		'Ext.chart.axis.Category',
 		'Ext.data.Store',
+		'Ext.MessageBox',
 		'Ext.Ajax',
 		'Ext.JSON',
 		'AOS.Helper'
@@ -95,7 +97,9 @@ Ext.define('AOS.view.statistics.CompletionGraph', {
 					};
 					newseries.push(newone);
 				}
-				me.setSeries(newseries);
+				if(newseries.length > 0){
+					me.setSeries(newseries);
+				}
 			},
 			failure: function (response) {
 				Ext.Msg.alert('Graph not loaded','Completion graph could not be loaded.');

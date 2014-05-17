@@ -29,6 +29,7 @@ Ext.define('AOS.view.statistics.FocusGraph', {
 		'Ext.chart.axis.Numeric',
 		'Ext.chart.axis.Category',
 		'Ext.data.Store',
+		'Ext.MessageBox',
 		'Ext.Ajax',
 		'Ext.JSON',
 		'AOS.Helper'
