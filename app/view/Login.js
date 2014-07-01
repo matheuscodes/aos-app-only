@@ -32,6 +32,7 @@ Ext.define('AOS.view.Login', {
 	],
 	config: {
 		title: 'Login',
+		scrollable: 'vertical',
 		items: [
 			{
 				xtype: 'titlebar',
@@ -52,7 +53,7 @@ Ext.define('AOS.view.Login', {
 			{
 				xtype: 'image',
 				src: 'resources/images/AOSLogo.png',
-				style: 'width:100%; height:33%; margin:2%;'
+				style: 'width:100%; height:33%; margin:2%; min-width:200px; min-height:200px'
 			},
 			{
 				xtype:'fieldset',
