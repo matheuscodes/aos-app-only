@@ -38,9 +38,9 @@ $font-family: 'KingthingsTrypewriter' !default;
 @import 'sencha-touch/default';
 @import 'sencha-touch/default/all';
 
-/* Overwrite for overal font size */
+/* Overwrite for overall font size */
 html {
-	font-size:150%;
+	font-size:130%;
 }
 
 /* Overwrite for Icon Size */
@@ -53,30 +53,25 @@ html {
 	min-width: 1em;
 }
 
-/* Overwrite for Tab Label */
-.x-tabbar.x-docked-bottom .x-tab .x-button-label{
-    font-size: 0.5em;
-	padding: 0.4em;
+/* Overwrite for Bottom Tab Label*/
+.x-tabbar.x-docked-bottom .x-tab .x-button-label {
+	font-size: 0.45em;
+	padding: 0.35em;
 }
 
-/* Overwrite for Bottom Toolbar Label*/
-.x-toolbar.x-docked-bottom .x-button .x-button-label {
-	font-size: 0.5em;
-}
-
-/* Overwrite for Bottom Toolbar Icon*/
+/* Overwrite for Bottom Toolbar Icon */
 .x-toolbar.x-docked-bottom .x-button .x-button-icon:before {
-	line-height: 0.75em;
+	line-height: 0.6em;
 }
 
 /* Overwrite for Bottom Toolbar Icon*/
 .x-toolbar.x-docked-bottom {
-	min-height:2em;
+	min-height:1.6em;
 }
 
 /* Overwrite for Bottom Tab */
 .x-tabbar.x-docked-bottom {
-	height: 4em;
+	height: 3.2em;
 }
 
 /**
