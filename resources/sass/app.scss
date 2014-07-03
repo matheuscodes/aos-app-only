@@ -43,7 +43,7 @@ html {
 	font-size:130%;
 }
 
-/* Overwrite for Icon Size */
+/* Overwrite for Tab Icon Size */
 .x-tab .x-button-icon {
 	font-size: 1.3em;
 }
@@ -51,6 +51,11 @@ html {
 /* Overwrite for Tab Size */
 .x-tab {
 	min-width: 1em;
+}
+
+/* Overwrite for Bottom Tab */
+.x-tabbar.x-docked-bottom {
+	height: 3.2em;
 }
 
 /* Overwrite for Bottom Tab Label*/
@@ -66,12 +71,7 @@ html {
 
 /* Overwrite for Bottom Toolbar Icon*/
 .x-toolbar.x-docked-bottom {
-	min-height:1.6em;
-}
-
-/* Overwrite for Bottom Tab */
-.x-tabbar.x-docked-bottom {
-	height: 3.2em;
+	min-height: 2em;
 }
 
 /**
