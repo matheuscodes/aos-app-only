@@ -146,16 +146,16 @@ Ext.define('AOS.view.Statistics', {
 				var html = '';
 				if(stats && stats['statistics']){
 					html = '';
-					html += '<p><b>Planned Time:</b> '+stats['statistics']['planned_time']+' hours.</p>';
-					html += '<p><b>Used Time:</b> '+stats['statistics']['used_time']+' hours.</p>';
-					html += '<p><b>Expected Used Time:</b> '+stats['statistics']['expected_used_time']+' hours.</p>';
-					html += '<p><b>Surplus/Deficit:</b> '+stats['statistics']['surplus_time']+' hours.</p>';
-					html += '<p><b>Expected Completion:</b> '+stats['statistics']['expected_completion']+'%</p>';
+					html += '<p><b>Planned Time:</b><br/> '+stats['statistics']['planned_time']+' hours.</p>';
+					html += '<p><b>Used Time:</b><br/> '+stats['statistics']['used_time']+' hours.</p>';
+					html += '<p><b>Expected Used Time:</b><br/> '+stats['statistics']['expected_used_time']+' hours.</p>';
+					html += '<p><b>Surplus/Deficit:</b><br/> '+stats['statistics']['surplus_time']+' hours.</p>';
+					html += '<p><b>Expected Completion:</b><br/> '+stats['statistics']['expected_completion']+'%</p>';
 
 					html += '<table style="text-align:center">';
 
 					html += '<tr><td colspan="3"><b>Completion</b></td></tr>';
-					html += '<tr><td>Max</td><td>Average</td><td>Min</td></tr>';
+					html += '<tr><td width="33%">Max</td><td width="33%">Average</td><td width="33%">Min</td></tr>';
 					html += '<tr>';
 					html += '<td>'+stats['statistics']['completion']['max']+'%</td>';
 					html += '<td>'+stats['statistics']['completion']['avg']+'%</td>';
