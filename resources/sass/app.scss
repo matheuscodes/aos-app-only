@@ -43,6 +43,11 @@ html {
 	font-size:130%;
 }
 
+/* Overwrite for Message Box Size */
+.x-msgbox {
+	min-width: 9em;
+}
+
 /* Overwrite for Tab Icon Size */
 .x-tab .x-button-icon {
 	font-size: 1.3em;
