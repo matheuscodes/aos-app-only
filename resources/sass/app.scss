@@ -140,6 +140,8 @@ html {
 .aos-small-report {
 	font-size: 0.5em;
 	text-align: right;
+	border-left: 0.1em solid;
+	padding: 0 0.3em 0 0.3em;
 }
 
 .aos-small-header {
@@ -155,17 +157,28 @@ html {
 	padding: 0 1em 0 0;
 }
 
+.aos-goal-header {
+	text-align: center;
+	padding: 0.5em;
+	font-weight: bold;
+}
+
+.aos-goal-info {
+	font-size: 0.5em;
+	padding: 0.5em;
+	text-align: right;
+}
+
 .aos-goal-field {
 	font-size: 0.8em;
 	font-weight: bold;
 	padding: 0.5em;
-	width: 40%;
 }
 
 .aos-goal-data {
 	font-size: 0.8em;
 	padding: 0.5em;
-	width: 60%;
+	font-weight: normal;
 }
 
 .aos-copyright {

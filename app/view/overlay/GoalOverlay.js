@@ -32,7 +32,7 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 		modal:true,
 		hideOnMaskTap: true,
 		centered: true,
-		width: '70%',
+		width: '100%',
 		height: '80%',
 		scrollable: true,
 		showAnimation:{
@@ -48,10 +48,12 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 				xtype:'titlebar',
 				itemId: 'goaldisplay-titlebar',
 				docked: 'top',
+				title: 'Details',
 				items: [
 					{
 						itemId: 'goaldisplay-edit',
 						iconCls: 'aos-icon-edit',
+						ui: 'round',
 						align: 'right',
 						handler: function(){
 							var grandgrandfather = this.parent.parent.parent;
@@ -77,20 +79,24 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 	 */
 	popUp: function(item){
 		this.goal_record = item;
-		var html = '<table width=70%>';
-		html += '<tr><td class="aos-goal-field">Time Planned:</td>';
-		html += '<td class="aos-goal-data">'+this.goal_record.get('time_planned')+' hours</td></tr>';
-		html += '<tr><td class="aos-goal-field">Time Spent:</td>';
-		html += '<td class="aos-goal-data">'+this.goal_record.get('total_time_spent')+' hours</td></tr>';
+		var html = '<p class="aos-goal-header">'+this.goal_record.get('title')+'</p>';
+		
+		html += '<p class="aos-goal-field">Time Planned:';
+		html += '<span class="aos-goal-data">'+this.goal_record.get('time_planned')+' hours.</span></p>';
+
+		html += '<p class="aos-goal-field">Time Spent:';
+		html += '<span class="aos-goal-data">'+this.goal_record.get('total_time_spent')+' hours.</span></p>';
+
 		if(this.goal_record.get('dedication')){
-			html += '<tr><td class="aos-goal-field">Dedication:</td>';
-			html += '<td class="aos-goal-data">'+this.goal_record.get('dedication')+'%</td></tr>';
+			html += '<p class="aos-goal-field">Dedication:';
+			html += '<span class="aos-goal-data">'+this.goal_record.get('dedication')+'%</span></p>';
 		}
-		html += '<tr><td class="aos-goal-field">Completion:</td>';
-		html += '<td class="aos-goal-data">'+this.goal_record.get('completion')+'%</td></tr>';
-		html += '<tr><td class="aos-goal-field">Description:</td><td/></tr>';
-		html += '<tr><td class="aos-goal-data" colspan=2><p>'+this.goal_record.get('description')+'</p></td></tr>';
-		html += '</table>';
+
+		html += '<p class="aos-goal-field">Completion:';
+		html += '<span class="aos-goal-data">'+this.goal_record.get('completion')+'%</span></p>';
+
+		html += '<p class="aos-goal-field">Description: <br/>';
+		html += '<span class="aos-goal-data">'+this.goal_record.get('description')+'</span></p>';
 
 		var goal_id = this.goal_record.get('id');
 		var tasks = [];
@@ -99,13 +105,16 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 				tasks.push(rec);
 			}
 		});
-		html += '<table width="90%" align="center">';
+
+		html += '<p class="aos-goal-info">Initial = I.<br/>Current = C.<br/>Target = T.<br/>Completion = C.</p>';
+		
+		html += '<table width="98%" align="center">';
 		html += '<tr>';
-		html += '<td class="aos-small-header">Task</td>';
-		html += '<td class="aos-small-header">Initial</td>';
-		html += '<td class="aos-small-header">Current</td>';
-		html += '<td class="aos-small-header">Target</td>';
-		html += '<td class="aos-small-header">Progress</td>'
+		html += '<td class="aos-small-header">Task Name</td>';
+		html += '<td class="aos-small-header">I.</td>';
+		html += '<td class="aos-small-header">C.</td>';
+		html += '<td class="aos-small-header">T.</td>';
+		html += '<td class="aos-small-header">P.</td>'
 		html += '</tr>';
 		var i;
 		for(i = 0; i < tasks.length; i++){
@@ -118,9 +127,8 @@ Ext.define('AOS.view.overlay.GoalOverlay',{
 			html += '</tr>';
 		}
 		html += '</table>';
-		html += '<br/><br/>';
+		html += '<br/>';
 		this.setHtml(html);
-		this.down('#goaldisplay-titlebar').setTitle(this.goal_record.get('title'));
 		this.show();
 	}
 });
