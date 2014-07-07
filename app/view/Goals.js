@@ -44,10 +44,11 @@ Ext.define('AOS.view.Goals', {
 				store: 'Goals',
 				itemId: 'list-display',
 				itemTpl:	'<table width="100%"><tr>'+
-							'<td class="aos-title" width="100%">{title}</td>'+
-							'<td class="aos-goal-status"><b>Completed</b><br/>{completion}%</td>'+
-							'<td class="aos-goal-status"><b>Spent</b><br/>{total_time_spent} hours</td>'+
-							'<td class="aos-goal-status"><b>Dedication</b><br/>{dedication}%</td>'+
+							'<td class="aos-title">{title}</td>'+
+							'<td class="aos-goal-status" width="40%">'+
+							'<b>Completed</b> {completion}%<br/>'+
+							'<b>Spent</b> {total_time_spent} hours<br/>'+
+							'<b>Dedicated</b> {dedication}%</td>'+
 							'</tr></table>',
 				listeners: {
 					select: function() {
