@@ -45,11 +45,13 @@ Ext.define('AOS.view.Tasks', {
 				store: 'Tasks',
 				itemId: 'list-display',
 				itemTpl:	'<table width="100%"><tr>'+
-							'<td class="aos-title" width="100%">{name}</td>'+
-							'<td class="aos-goal-status"><b>Initial</b><br/>{initial}</td>'+
-							'<td class="aos-goal-status"><b>Current</b><br/>{current}</td>'+
-							'<td class="aos-goal-status"><b>Target</b><br/>{target}</td>'+
-							'<td class="aos-goal-status"><b>Progress</b><br/>{completion}%</td>'+
+							'<td class="aos-title">{name}</td>'+
+							'<td class="aos-goal-status"  width="40%">'+
+							'<b>Initial:</b> {initial}<br/>'+
+							'<b>Current:</b> {current}<br/>'+
+							'<b>Target:</b> {target}<br/>'+
+							'<b>Progress:</b> {completion}%<br/>'+
+							'<b>Spent</b> {total_time_spent} hours</td>'+
 							'</tr></table>',
 				grouped: true,
 				listeners: {
