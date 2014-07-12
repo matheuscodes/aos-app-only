@@ -41,13 +41,13 @@ Ext.define('AOS.view.Worklog', {
 				xtype: 'list',
 				store: 'Worklog',
 				itemId: 'list-display',
-				itemTpl:	' <table width="100%">'+
-							'<tr><td class="aos-date" width="100%">{start}</td>'+
-							'<td class="aos-goal-status" rowspan="4"><b>Spent</b><br/>{time_spent} hours</td></tr>'+
-							'<tr><td class="aos-normal" width="100%">{task_name}</td></tr>'+
-							'<tr><td class="aos-small" width="100%">{comment}</td></tr>'+
-							'<tr><td class="aos-small" width="100%">{goal_title}</td></tr>'+
-							'</table>',
+				itemTpl:	'<table width="100%"><tr>'+
+							'<td width="100%"><p class="aos-date">{start}</p>'+
+							'<p class="aos-normal" >{task_name}</p>'+
+							'<p class="aos-small">{comment}<br/>{goal_title}</p>'+
+							'<td class="aos-goal-status" style="text-align:center;">'+
+							'<b>Spent</b><br/>{time_spent}<br/>hours</td>'+
+							'</tr></table>',
 				listeners: {
 					select: function() {
 						this.parent.enableActions();
