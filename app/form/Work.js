@@ -193,7 +193,7 @@ Ext.define('AOS.form.Work',{
 				required: true,
 				itemId: 'work-time',
 				name: 'time_spent',
-				label: 'Spent Time (minutes)',
+				label: 'Spent Time<br/>(minutes)',
 				stepValue: 15,
 				value: 30,
 				minValue: 0
@@ -207,7 +207,7 @@ Ext.define('AOS.form.Work',{
 			}
 		],
 		defaults: {
-			labelWidth: '40%',
+			labelWidth: '47%',
 			listeners: {
 				change: function(field, newVal, oldVal) {
 					if(this.parent){
