@@ -205,7 +205,7 @@ Ext.define('AOS.form.Task',{
 			{
 				xtype: 'textfield',
 				name: 'total_time_spent',
-				label: 'Total Time Spent',
+				label: 'Time Spent<br/>(hours)',
 				disabled: true,
 				readOnly: true
 			}
