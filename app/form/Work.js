@@ -75,7 +75,7 @@ Ext.define('AOS.form.Work',{
 				items:[
 					{
 						xtype:'button',
-						text: 'Back',
+						ui: 'round',
 						iconCls: 'aos-icon-back',
 						align: 'left',
 						handler: function(){
@@ -87,7 +87,7 @@ Ext.define('AOS.form.Work',{
 					{
 						xtype:'button',
 						itemId: 'save-button',
-						text: 'Save',
+						ui: 'round',
 						iconCls: 'aos-icon-save',
 						align: 'right',
 						disabled: true,

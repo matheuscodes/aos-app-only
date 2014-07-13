@@ -43,7 +43,7 @@ Ext.define('AOS.view.Information', {
 				items: [
 					{
 						xtype:'button',
-						text: 'Back',
+						ui: 'round',
 						iconCls: 'aos-icon-back',
 						align: 'left',
 						handler: function(){

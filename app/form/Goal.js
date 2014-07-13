@@ -40,7 +40,7 @@ Ext.define('AOS.form.Goal',{
 				items:[
 					{
 						xtype:'button',
-						text: 'Back',
+						ui: 'round',
 						iconCls: 'aos-icon-back',
 						align: 'left',
 						handler: function(){
@@ -53,7 +53,7 @@ Ext.define('AOS.form.Goal',{
 					{
 						xtype:'button',
 						itemId: 'save-button',
-						text: 'Save',
+						ui: 'round',
 						iconCls: 'aos-icon-save',
 						align: 'right',
 						disabled: true,
@@ -154,12 +154,12 @@ Ext.define('AOS.form.Goal',{
 				xtype: 'numberfield',
 				required: true,
 				name: 'time_planned',
-				label: 'Total Time Planned (hours)'
+				label: 'Time Planned<br/>(hours)'
 			},
 			{
 				xtype: 'textfield',
 				name: 'total_time_spent',
-				label: 'Total Time Spent (hours)',
+				label: 'Time Spent<br/>(hours)',
 				disabled: true,
 				readOnly: true
 			},
@@ -178,7 +178,7 @@ Ext.define('AOS.form.Goal',{
 			}
 		],
 		defaults: {
-			labelWidth: '40%',
+			labelWidth: '50%',
 			listeners: {
 				change: function(field, newVal, oldVal) {
 					this.parent.down('#save-button').enable();

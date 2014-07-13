@@ -79,6 +79,11 @@ html {
 	min-height: 2em;
 }
 
+/* Overwrite for Disabled Field Colour */
+.x-field .x-input-el{
+	background-color: #FFF;
+}
+
 /**
  * AOS Specific Icons
  */
