@@ -147,7 +147,7 @@ Ext.define('AOS.view.Information', {
 						'<p>This is inside the Details overlay, but basically opens the same view with a preselected Goal to be changed.</p>'+
 
 						'<h1>'+AOS.Helper.wrapInIcon('aos-icon-tasks','Tasks')+'</h1>'+
-						'<p>In this view the user can see a list and a brief status of all the current tasks. Those are ordered alphabetically by the "Goal Name" where they belong to.</p>'+
+						'<p>In this view the user can see a list and a detailed status of all the current tasks. Those are ordered alphabetically by the "Goal Name" where they belong to.</p>'+
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-details','Edit')+'</h2>'+
 						'<p>Opens the same view as the task creation on the "Goals" view, but with a preselected task to be edited.</p>'+
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-remove','Remove')+'</h2>'+
