@@ -43,7 +43,7 @@ Ext.define('AOS.view.Signup', {
 				items: [
 					{
 						xtype:'button',
-						text: 'Back',
+						ui: 'round',
 						iconCls: 'aos-icon-back',
 						align: 'left',
 						handler: function(){
@@ -64,10 +64,11 @@ Ext.define('AOS.view.Signup', {
 			{
 				xtype: 'fieldset',
 				id: 'signupInput',
-				title: 'Please fill in your information',
+				title: 'Provide the following',
 				instructions: '* required fields',
+				minWidth: '10%',
 				defaults: {
-					labelWidth: '40%'
+					labelWidth: '47%'
 				},
 				items:[
 					{
