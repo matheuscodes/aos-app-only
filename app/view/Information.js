@@ -59,7 +59,7 @@ Ext.define('AOS.view.Information', {
 				scrollable: true,
 				html:	'<div class="aos-about">'+
 						'<h1>About</h1>'+
-						'<p> AOSv0.2.1 - Arkanos Organizer Suite<br/>Matheus Borges Teixeira</p>'+
+						'<p> AOSv0.2.1<br/>Arkanos Organizer Suite<br/>Matheus Borges Teixeira</p>'+
 						'<p> This is a tool for managing personal goals, with possibility of breaking down into tasks and logging work, allowing statistical analysis on performance. It was created by Matheus Borges Teixeira. This application is offered free of charge under the GNU Affero General Public License. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.</p>'+
 						'<p> Contact the Author via matheus.bt at gmail or via his <a href="https://github.com/matheuscodes/">GitHub</a>.'+
 						
@@ -105,8 +105,7 @@ Ext.define('AOS.view.Information', {
 						'<p> Here you will be able to see how things are going with your goals and some graphical display of interesting metrics.</p>'+
 						'<h2>Important</h2>'+
 						'<p> All legend labels are scrollable horizontally.</p>'+
-						//TODO: better sizing
-						'<img src="/resources/images/labels.png" height="4%" />'+
+						'<img src="/resources/images/labels.png" width="250px" />'+
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-overview','Overview')+'</h1>'+
 						'<p>Most of the numbers in this tab are really straightforward, with exception of some:</p>'+
 						'<h3>Surplus/Deficit</h3>'+
@@ -123,7 +122,7 @@ Ext.define('AOS.view.Information', {
 						'<p>Simple line chart with the dedication over time for each goal.</p>'+
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-productivity','Productivity')+'</h2>'+
 						'<p>Bar chart indicating the effective productivity for each goal. It is very important to note that the productivity in a particular time takes into consideration the time up to that point. This means the last (most recent) information indicates the most correct effective productivity. Regarding usability, the graph only displays half of the available time range, but it is possible to pan over the entire period.</p>'+
-						'<img src="/resources/images/pan.png" height="4%"/>'+
+						'<img src="/resources/images/pan.png" width="250px" />'+
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-focus','Focus')+'</h2>'+
 						'<p>Displays the distribution of the time spent by each goal over time. The distribution is only within the actual logged work, and does not show relation to the time planned. It also does not consider the obtained results.</p>'+
 
@@ -168,7 +167,7 @@ Ext.define('AOS.view.Information', {
 						'<h2>'+AOS.Helper.wrapInIcon('aos-icon-remove','Remove')+'</h2>'+
 						'<p>Removes the selected work entry.</p>'+
 						'<br/>'+
-						'<p> AOS - Arkanos Organizer Suite </p>'+
+						'<p> AOS Arkanos Organizer Suite </p>'+
 						'<p> Copyright (C) 2014 Matheus Borges Teixeira</p>'+
 						'<p><br/></p>'+
 						'</div>',
