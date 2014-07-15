@@ -60,14 +60,22 @@ Ext.define('AOS.view.Goals', {
 				xtype: 'toolbar',
 				ui: 'neutral',
 				docked: 'bottom',
-				scrollable: 'horizontal',
+				scrollable: null,
 				layout: {pack:'center'},
 				items:[
+					{
+						itemId: 'new-goal',
+						ui: 'small',
+						text: '+Goal',
+						iconCls: 'aos-icon-new',
+						handler: function(){
+							AOS.Helper.switchTo('AOS.form.Goal',{ type: 'slide', direction: 'left' });
+						}
+					},
 					{
 						disabled: true,
 						itemId: 'goal-details',
 						ui: 'small',
-						text: 'Details',
 						iconCls: 'aos-icon-details',
 						handler: function(){
 							var grandfather = this.parent.parent;
@@ -84,7 +92,6 @@ Ext.define('AOS.view.Goals', {
 						disabled: true,
 						itemId: 'goal-remove',
 						ui: 'small',
-						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
@@ -104,7 +111,7 @@ Ext.define('AOS.view.Goals', {
 						disabled: true,
 						itemId: 'goal-tasks',
 						ui: 'small',
-						text: 'New Task',
+						text: '+Task',
 						iconCls: 'aos-icon-tasks',
 						align: 'left',
 						handler: function(){
@@ -114,15 +121,6 @@ Ext.define('AOS.view.Goals', {
 								AOS.Helper.switchTo('AOS.form.Task',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
 							}
-						}
-					},
-					{
-						itemId: 'new-goal',
-						ui: 'small',
-						text: 'New Goal',
-						iconCls: 'aos-icon-new',
-						handler: function(){
-							AOS.Helper.switchTo('AOS.form.Goal',{ type: 'slide', direction: 'left' });
 						}
 					}
 				]

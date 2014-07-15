@@ -74,9 +74,14 @@ html {
 	line-height: 0.6em;
 }
 
-/* Overwrite for Bottom Toolbar Icon*/
+/* Overwrite for Bottom Toolbar*/
 .x-toolbar.x-docked-bottom {
 	min-height: 2em;
+}
+
+/* Overwrite for Toolbar Button Size*/
+.x-toolbar .x-button-small {
+	min-height: 1.45em;
 }
 
 /* Overwrite for Disabled Field Colour */

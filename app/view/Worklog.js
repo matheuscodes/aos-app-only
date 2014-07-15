@@ -65,7 +65,6 @@ Ext.define('AOS.view.Worklog', {
 						disabled: true,
 						itemId: 'work-remove',
 						ui: 'small',
-						text: 'Remove',
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
