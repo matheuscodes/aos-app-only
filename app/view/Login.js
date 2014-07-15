@@ -80,9 +80,11 @@ Ext.define('AOS.view.Login', {
 				margin: '1%',
 				text: 'Log In',
 				handler: function () {
-					var me = this.parent;
-					var user_name = me.down('#userNameTextField').getValue();
-					var password = me.down('#passwordTextField').getValue();
+					var me = this;
+					me.setDisabled(true);
+					var who = me.parent;
+					var user_name = who.down('#userNameTextField').getValue();
+					var password = who.down('#passwordTextField').getValue();
 					var hashed_password = ""+CryptoJS.MD5(password);
 					if(user_name && password){
 						Ext.Ajax.request({
@@ -97,14 +99,18 @@ Ext.define('AOS.view.Login', {
 								AOS.Helper.purgeStore('Tasks');
 								AOS.Helper.purgeStore('Goals');
 								AOS.Helper.switchTo('AOS.view.Statistics',{ type: 'pop' });
+								me.setDisabled(false);
+								
 							},
 							failure: function (response) {
 								Ext.Msg.alert('Login failed!',response.status+': '+response.statusText);
+								me.setDisabled(false);
 							}
 						});
 					}
 					else{
 						Ext.Msg.alert('Error','Username and password are required!');
+						me.setDisabled(false);
 					}
 				}
 			},
