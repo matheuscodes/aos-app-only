@@ -23,6 +23,7 @@
  */
 Ext.define('AOS.Helper', {
 	extend: 'Ext.Component',
+	requires: ['Ext.util.DelayedTask'],
 	xtype: 'aos-helper',
 	singleton: true,
 
@@ -150,10 +151,18 @@ Ext.define('AOS.Helper', {
 	moveToSelection: function(list){
 		if(list.getSelection()[0]){
 			var store = list.getStore();
+			if(store.isLoading()){
+				var task = Ext.create('Ext.util.DelayedTask', function() {
+					console.log("hi");
+					this.moveToSelection(list);
+				}, this);
+				task.delay(100);
+				return;
+			}
 			selected = list.getSelection()[0];
 			idx = store.indexOf(selected);
 			els = list.getViewItems();
-
+			
 			if(idx > 1){
 				el = els[idx-1];
 				offset = Ext.get(el.getId()).dom.offsetTop;
