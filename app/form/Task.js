@@ -125,14 +125,19 @@ Ext.define('AOS.form.Task',{
 								Ext.Msg.alert('Wrong Input','Name is mandatory');
 								return;
 							}
-							if(!values.initial || isNaN(values.initial)){
+							if( (!values.initial && values.initial != 0) || isNaN(values.initial)){
 								Ext.Msg.alert('Wrong Input','Initial value needs to be a number');
 								return;
 							}
-							if(!values.target || isNaN(values.target)){
+							if( (!values.target && values.target != 0) || isNaN(values.target)){
 								Ext.Msg.alert('Wrong Input','Target value needs to be a number');
 								return;
 							}
+							if(values.target == values.initial){
+								Ext.Msg.alert('Wrong Input','Target needs to be other than Initial');
+								return;
+							}
+							
 
 							if(record){
 								if(values.name){
