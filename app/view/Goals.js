@@ -42,7 +42,7 @@ Ext.define('AOS.view.Goals', {
 			{
 				xtype: 'list',
 				store: 'Goals',
-				itemId: 'list-display',
+				itemId: 'goal-list',
 				itemTpl:	'<table width="100%"><tr>'+
 							'<td class="aos-title">{title}</td>'+
 							'<td class="aos-goal-status" width="40%">'+
@@ -79,7 +79,7 @@ Ext.define('AOS.view.Goals', {
 						iconCls: 'aos-icon-details',
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
+							var selected = grandfather.down('#goal-list').getSelection();
 							if(selected && selected.length > 0){
 								if(!grandfather.overlay){
 									grandfather.overlay = Ext.Viewport.add(Ext.create('AOS.view.overlay.GoalOverlay'));
@@ -95,7 +95,7 @@ Ext.define('AOS.view.Goals', {
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var list = grandfather.down('#list-display');
+							var list = grandfather.down('#goal-list');
 							var selected = list.getSelection();
 							if(selected && selected.length > 0){
 								var before = list.getScrollable().getScroller().position.y;
@@ -116,7 +116,7 @@ Ext.define('AOS.view.Goals', {
 						align: 'left',
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
+							var selected = grandfather.down('#goal-list').getSelection();
 							if(selected && selected.length > 0){
 								AOS.Helper.switchTo('AOS.form.Task',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setGoal(selected[0].get('id'),selected[0].get('title'));
@@ -128,7 +128,7 @@ Ext.define('AOS.view.Goals', {
 		],
 		listeners: {
 			show: function() {
-				var list = this.down('#list-display');
+				var list = this.down('#goal-list');
 				if(list){
 					AOS.Helper.moveToSelection(list);
 				}
