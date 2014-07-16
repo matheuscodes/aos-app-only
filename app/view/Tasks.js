@@ -43,7 +43,7 @@ Ext.define('AOS.view.Tasks', {
 			{
 				xtype: 'list',
 				store: 'Tasks',
-				itemId: 'list-display',
+				itemId: 'task-list',
 				itemTpl:	'<table width="100%"><tr>'+
 							'<td class="aos-title">{name}</td>'+
 							'<td class="aos-goal-status"  width="40%">'+
@@ -74,7 +74,7 @@ Ext.define('AOS.view.Tasks', {
 						disabled: true,
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
+							var selected = grandfather.down('#task-list').getSelection();
 							if(selected && selected.length > 0){
 								AOS.Helper.switchTo('AOS.form.Task',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setRecord(selected[0]);
@@ -89,7 +89,7 @@ Ext.define('AOS.view.Tasks', {
 						disabled: true,
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var list = grandfather.down('#list-display');
+							var list = grandfather.down('#task-list');
 							var selected = list.getSelection();
 							if(selected && selected.length > 0){
 								var before = list.getScrollable().getScroller().position.y;
@@ -109,7 +109,7 @@ Ext.define('AOS.view.Tasks', {
 						disabled: true,
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var selected = grandfather.down('#list-display').getSelection();
+							var selected = grandfather.down('#task-list').getSelection();
 							if(selected && selected.length > 0){
 								AOS.Helper.switchTo('AOS.form.Work',{ type: 'slide', direction: 'left' });
 								Ext.Viewport.getActiveItem().setTask(selected[0].get('id'),selected[0].get('name'));
@@ -121,7 +121,7 @@ Ext.define('AOS.view.Tasks', {
 		],
 		listeners: {
 			show: function() {
-				var list = this.down('#list-display');
+				var list = this.down('#task-list');
 				if(list){
 					AOS.Helper.moveToSelection(list);
 				}
