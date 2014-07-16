@@ -40,7 +40,7 @@ Ext.define('AOS.view.Worklog', {
 			{
 				xtype: 'list',
 				store: 'Worklog',
-				itemId: 'list-display',
+				itemId: 'work-list',
 				itemTpl:	'<table width="100%"><tr>'+
 							'<td width="100%"><p class="aos-date">{start}</p>'+
 							'<p class="aos-normal" >{task_name}</p>'+
@@ -68,7 +68,7 @@ Ext.define('AOS.view.Worklog', {
 						iconCls: 'aos-icon-remove',
 						handler: function(){
 							var grandfather = this.parent.parent;
-							var list = grandfather.down('#list-display');
+							var list = grandfather.down('#work-list');
 							var selected = list.getSelection();
 							if(selected && selected.length > 0){
 								var before = list.getScrollable().getScroller().position.y;
