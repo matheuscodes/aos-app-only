@@ -53,7 +53,7 @@ Ext.define('AOS.view.Login', {
 			{
 				xtype: 'image',
 				src: 'resources/images/AOSLogo.png',
-				style: 'width:100%; height:33%; margin:2%; min-width:200px; min-height:200px'
+				style: 'width:100%; height:33%; margin:2%; min-width:300px; min-height:200px'
 			},
 			{
 				xtype:'fieldset',
@@ -129,10 +129,33 @@ Ext.define('AOS.view.Login', {
 				itemId: 'forgotButton',
 				ui: 'small',
 				margin: '2%',
-				text: 'Forgot password?',
-				disabled: true,
+				text: 'Reset Password',
+				disabled: false,
 				handler: function () {
-					AOS.Helper.switchTo('AOS.view.Forgot',{ type: 'slide', direction: 'left' });
+					var me = this;
+					me.setDisabled(true);
+					var who = me.parent;
+					var user_name = who.down('#userNameTextField').getValue();
+					if(user_name){
+						Ext.Ajax.request({
+							url: 'reset',
+							method: 'post',
+							params: {
+								user_name: user_name
+							},
+							success: function (response) {
+								Ext.Msg.alert('Success!','Check your email for the reset link!');
+							},
+							failure: function (response) {
+								Ext.Msg.alert('Failed!',response.status+': '+response.statusText);
+								me.setDisabled(false);
+							}
+						});
+					}
+					else{
+						Ext.Msg.alert('Error','Please inform your username!');
+						me.setDisabled(false);
+					}
 				}
 			}
 		]
