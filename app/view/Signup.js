@@ -139,14 +139,16 @@ Ext.define('AOS.view.Signup', {
 				margin: '1%',
 				text: 'Submit',
 				handler: function(){
-					var me = this.parent;
-					var user_name = me.down('#newUserName').getValue();
-					var first_name = me.down('#newFirstName').getValue();
-					var last_name = me.down('#newLastName').getValue();
-					var password = me.down('#newPassword').getValue();
-					var password2 = me.down('#newConfirmPassword').getValue();
-					var email = me.down('#newEmail').getValue();
-					var email2 = me.down('#newConfirmEmail').getValue();
+					this.setDisabled(true);
+					var me = this;
+					var father = this.parent;
+					var user_name = father.down('#newUserName').getValue();
+					var first_name = father.down('#newFirstName').getValue();
+					var last_name = father.down('#newLastName').getValue();
+					var password = father.down('#newPassword').getValue();
+					var password2 = father.down('#newConfirmPassword').getValue();
+					var email = father.down('#newEmail').getValue();
+					var email2 = father.down('#newConfirmEmail').getValue();
 
 					if(!user_name)
 						Ext.Msg.alert('Required','Please provide a username.');
@@ -180,7 +182,7 @@ Ext.define('AOS.view.Signup', {
 								if(response.status == 200){
 									var suggestions = Ext.JSON.decode(response.responseText,true);
 									if(suggestions){
-										var error = me.down('#signupErrorMessage');
+										var error = father.down('#signupErrorMessage');
 										error.hide();
 										error.setHtml("Username "+user_name+" is already taken, you can try<br/>"+
 														suggestions[0]+"<br/>"+suggestions[1]+"<br/>"+suggestions[2]);
@@ -192,13 +194,24 @@ Ext.define('AOS.view.Signup', {
 									AOS.Helper.purgeStore('Tasks');
 									AOS.Helper.purgeStore('Goals');
 									AOS.Helper.switchTo('AOS.view.Statistics', { type: 'pop' });
+									Ext.Msg.alert('Welcome','Please check your email later for the confirmation link!');
+									me.setDisabled(false);
+									father.down('#newUserName').reset();
+									father.down('#newFirstName').reset();
+									father.down('#newLastName').reset();
+									father.down('#newPassword').reset();
+									father.down('#newConfirmPassword').reset();
+									father.down('#newEmail').reset();
+									father.down('#newConfirmEmail').reset();
 								}
 								else{
 									Ext.Msg.alert('Sign Up failed!',response.status+': '+response.statusText);
+									me.setDisabled(false);
 								}
 							},
 							failure: function (response) {
 								Ext.Msg.alert('Sign Up failed!',response.status+': '+response.statusText);
+								me.setDisabled(false);
 							}
 						});
 					}
