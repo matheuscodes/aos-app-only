@@ -99,7 +99,7 @@ Ext.define('AOS.form.Goal',{
 								Ext.Msg.alert('Wrong Input','Title is mandatory');
 								return;
 							}
-							if(!values.time_planned || isNaN(values.time_planned)){
+							if(isNaN(values.time_planned)){
 								Ext.Msg.alert('Wrong Input','Time needs to be a number');
 								return;
 							}
@@ -113,7 +113,7 @@ Ext.define('AOS.form.Goal',{
 									backup_title = record.get('title');
 									record.set('title',values.title);
 								}
-								if(values.time_planned){
+								if(values.time_planned || (values.time_planned === 0)){
 									backup_time_planned = record.get('time_planned');
 									record.set('time_planned',values.time_planned);
 								}

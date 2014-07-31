@@ -144,11 +144,11 @@ Ext.define('AOS.form.Task',{
 									backup_name = record.get('name');
 									record.set('name',values.name);
 								}
-								if(values.initial){
+								if(values.initial || (values.initial === 0)){
 									backup_initial = record.get('initial');
 									record.set('initial',values.initial);
 								}
-								if(values.target){
+								if(values.target || (values.target === 0)){
 									backup_target = record.get('target');
 									record.set('target',values.target);
 								}
