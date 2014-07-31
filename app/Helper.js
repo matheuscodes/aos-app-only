@@ -153,7 +153,6 @@ Ext.define('AOS.Helper', {
 			var store = list.getStore();
 			if(store.isLoading()){
 				var task = Ext.create('Ext.util.DelayedTask', function() {
-					console.log("hi");
 					this.moveToSelection(list);
 				}, this);
 				task.delay(100);
